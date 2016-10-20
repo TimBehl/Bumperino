@@ -15,7 +15,10 @@ function mainLoop() {
             setUpGameScreen();
             setUpGameScreenButtons();
             gameLoop();
-            //displaySprites();
+            break;
+        case "MAP_SELECT":
+            setUpMapScreen();
+            setUpMapScreenButtons();
             break;
         case "GAMEOVER":
             removeSprites();
@@ -24,6 +27,7 @@ function mainLoop() {
             resetScore();
             resetGameTimer();
             removeMouseText();
+            break;
         default:
             break;
     }

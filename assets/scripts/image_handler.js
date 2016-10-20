@@ -3,7 +3,8 @@ function initScreens(){
     stage.addChild(gameScreen);
     stage.addChild(instructionScreen);
     stage.addChild(gameoverScreen);
-    titleScreen.visible = gameScreen.visible = instructionScreen.visible = gameoverScreen.visible = false;
+    stage.addChild(mapScreen);
+    titleScreen.visible = gameScreen.visible = instructionScreen.visible = gameoverScreen.visible = mapScreen.visible = false;
     console.log("screen images loaded");
 }
 
@@ -12,6 +13,7 @@ function setUpTitleScreen(){
     gameScreen.visible = false;
     instructionScreen.visible = false;
     gameoverScreen.visible = false;
+    mapScreen.visible = false;
 }
 
 function setUpGameScreen(){
@@ -19,6 +21,7 @@ function setUpGameScreen(){
     gameScreen.visible = true;
     instructionScreen.visible = false;
     gameoverScreen.visible = false;
+    mapScreen.visible = false;
 }
 
 function setUpInstructionScreen(){
@@ -26,6 +29,7 @@ function setUpInstructionScreen(){
     gameScreen.visible = false;
     instructionScreen.visible = true;
     gameoverScreen.visible = false;
+    mapScreen.visible = false;
 }
 
 function setUpGameOverScreen(){
@@ -33,4 +37,13 @@ function setUpGameOverScreen(){
     gameScreen.visible = false;
     instructionScreen.visible = false;
     gameoverScreen.visible = true;
+    mapScreen.visible = false;
+}
+
+function setUpMapScreen(){
+    titleScreen.visible = false;
+    gameScreen.visible = false;
+    instructionScreen.visible = false;
+    gameoverScreen.visible = false;
+    mapScreen.visible = true;
 }
