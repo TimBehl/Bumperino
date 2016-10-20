@@ -46,7 +46,7 @@ function loadComplete(evt){
             walkRight: [1, 12, "walkRight", .5],
             standLeft: [13, 13, "standLeft"],
             walkLeft: [14, 25, "walkLeft", .5]
-            }     
+            }
         });
     
     walkman = new createjs.Sprite(walkSheet);
