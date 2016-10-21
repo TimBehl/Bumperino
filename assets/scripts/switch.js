@@ -10,20 +10,20 @@ this.Switch = this.Switch || {};
   let mainLoop = () => {
       switch(Switch.currentState){
           case "MENU":
-              setUpTitleScreen();
+              imageHandler.setUpTitleScreen();
               setUpTitleScreenButtons();
               break;
           case "INSTRUCTION":
-              setUpInstructionScreen();
+              imageHandler.setUpInstructionScreen();
               setUpInstructionScreenButtons();
               break;
           case "GAME":
-              setUpGameScreen();
+              imageHandler.setUpGameScreen();
               setUpGameScreenButtons();
               gameLoop();
               break;
           case "MAP_SELECT":
-              setUpMapScreen();
+              imageHandler.setUpMapScreen();
               setUpMapScreenButtons();
               break;
           case "GAMEOVER":
@@ -44,7 +44,7 @@ this.Switch = this.Switch || {};
   let initMainLoop = () => {
       createjs.Ticker.addEventListener("tick", mainLoop);
       createjs.Ticker.setFPS(FPS);
-      initScreens();
+      imageHandler.initScreens();
       initButtons();
   }
 
