@@ -44,7 +44,7 @@ function loadComplete(evt){
     vsAIButton = new createjs.Bitmap(queue.getResult("vsAI"));
     vsPlayerButton = new createjs.Bitmap(queue.getResult("vsPlayer"));
     console.log("Everything loaded here boss!");
-    
+
     blockSheet = new createjs.SpriteSheet({
         "frames": {
             "width": 10,
@@ -59,8 +59,8 @@ function loadComplete(evt){
         "images": [queue.getResult("block")]
     });
     blockSprite = new createjs.Sprite(blockSheet);
-    
-    initMainLoop();
+
+    Switch.initMainLoop();
 }
 
 function setupCanvas() {
@@ -122,7 +122,7 @@ function setupMapThree(){
 }
 
 function gameLoop(){
-    
+
 }
 
 (function main() {
