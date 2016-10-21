@@ -1,0 +1,10 @@
+canvas {
+  margin-left: auto;
+  margin-right: auto;
+  border: dashed 1px black;
+  display:flex;
+}
+
+html {
+  background-color: #F0F0F0;
+}

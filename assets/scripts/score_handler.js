@@ -1,20 +1,30 @@
-var score = 0;
-var scoreText;
+this.scoreHandler = this.scoreHandler || {};
 
-function resetScore(){
-    stage.removeChild(scoreText);
-    score = 0;
-}
+(function(){
+  let score = 0;
+  let scoreText;
 
-function addScoreText(){
-    stage.removeChild(scoreText);
-    scoreText = new createjs.Text("Score: " + score, "12px Arial", "#000");
-    scoreText.x = 10;
-    scoreText.y = 550;
-    stage.addChild(scoreText);
-}
+  let resetScore = () => {
+      stage.removeChild(scoreText);
+      score = 0;
+  }
 
-function scoreUpdate(scoreChange){
-    score += scoreChange;
-    addScoreText();
-}
+  scoreHandler.resetScore = resetScore;
+
+  let addScoreText = () => {
+      stage.removeChild(scoreText);
+      scoreText = new createjs.Text("Score: " + score, "12px Arial", "#000");
+      scoreText.x = 10;
+      scoreText.y = 550;
+      stage.addChild(scoreText);
+  }
+
+  scoreHandler.addScoreText = addScoreText;
+
+  let scoreUpdate = (scoreChange) => {
+      score += scoreChange;
+      addScoreText();
+  }
+
+  scoreHandler.scoreUpdate = scoreUpdate;
+}());

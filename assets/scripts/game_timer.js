@@ -1,25 +1,39 @@
-var frameCount = 0;
-var gameTimer, timerText;
-var FPS = 30;
+this.gameTimer = this.gameTimer || {};
+(function(){
+let frameCount = 0;
+let timer,
+    timerText;
 
-function resetGameTimer() {
+gameTimer.frameCount = frameCount;
+gameTimer.timer = timer;
+gameTimer.timerText = timerText;
+
+let resetGameTimer = () => {
     stage.removeChild(timerText);
     frameCount = 0;
-    gameTimer = 0;
-    timerText = -1;
+    timer = 0;
+    timerText = {};
 }
 
-function runGameTimer() {
+gameTimer.resetGameTimer = resetGameTimer;
+
+let runGameTimer = () => {
     frameCount += 1;
-    if(frameCount%(FPS/10) === 0) {
-        gameTimer = frameCount/(FPS);   
+    if(frameCount%(Switch.setFPS/10) === 0) {
+        gameTimer = frameCount/(Switch.setFPS);
     }
 }
 
-function addTimerText(){
+gameTimer.runGameTimer = runGameTimer;
+
+let addTimerText = () => {
     stage.removeChild(timerText);
-    timerText = new createjs.Text(gameTimer, "20px Arial", "#000");
+    timerText = new createjs.Text(timer, "20px Arial", "#000");
     timerText.x = 10;
     timerText.y = 10;
     stage.addChild(timerText);
 }
+
+gameTimer.addTimerText = addTimerText;
+
+}());

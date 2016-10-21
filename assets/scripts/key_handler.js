@@ -1,42 +1,58 @@
-var key_Left = 37;
-var key_Up = 38;
-var key_Right = 39;
-var key_Down = 40;
-var key_W = 87;
-var key_A = 65;
-var key_S = 83;
-var key_D = 68;
-var key_SpaceBar = 32;
+// var KEY_CODES.keyLeft = 37;
+// var KEY_CODES.keyUp = 38;
+// var KEY_CODES.keyRight = 39;
+// var KEY_CODES.keyDown = 40;
+// var KEY_CODES.keyW = 87;
+// var KEY_CODES.keyA = 65;
+// var KEY_CODES.keyS = 83;
+// var KEY_CODES.keyD = 68;
+// var KEY_CODES.keySpaceBar = 32;
+this.keyHandler = this.keyHandler || {};
+(function(){
 
-function handleKeyDown(evt) {
+const KEY_CODES = {
+  keyLeft: 37,
+  keyUp: 38,
+  keyRight: 39,
+  keyDown: 40,
+  keyW: 87,
+  keyA: 65,
+  keyS: 83,
+  keyD: 68,
+  keySpaceBar: 32
+}
+
+let handleKeyDown = (evt) => {
     if(!evt){ var evt = window.event; }  //browser compatibility
     switch(evt.keyCode) {
-        case key_Left:  console.log(evt.keyCode+" down"); return false;
-        case key_Right: console.log(evt.keyCode+" down"); return false;
-        case key_Up:    console.log(evt.keyCode+" down"); return false;
-        case key_Down:  console.log(evt.keyCode+" down"); return false;
-        case key_W:  console.log(evt.keyCode+" down"); return false;
-        case key_A:  console.log(evt.keyCode+" down"); return false;
-        case key_S:  console.log(evt.keyCode+" down"); return false;
-        case key_D:  console.log(evt.keyCode+" down"); return false;
-        case key_SpaceBar:  console.log(evt.keyCode+" down"); return false;
+        case KEY_CODES.keyLeft:  console.log(evt.keyCode+" down"); return false;
+        case KEY_CODES.keyRight: console.log(evt.keyCode+" down"); return false;
+        case KEY_CODES.keyUp:    console.log(evt.keyCode+" down"); return false;
+        case KEY_CODES.keyDown:  console.log(evt.keyCode+" down"); return false;
+        case KEY_CODES.keyW:  console.log(evt.keyCode+" down"); return false;
+        case KEY_CODES.keyA:  console.log(evt.keyCode+" down"); return false;
+        case KEY_CODES.keyS:  console.log(evt.keyCode+" down"); return false;
+        case KEY_CODES.keyD:  console.log(evt.keyCode+" down"); return false;
+        case KEY_CODES.keySpaceBar:  console.log(evt.keyCode+" down"); return false;
     }
 }
- 
-function handleKeyUp(evt) {
+
+let handleKeyUp = (evt) => {
     if(!evt){ var evt = window.event; }  //browser compatibility
     switch(evt.keyCode) {
-        case key_Left:    console.log(evt.keyCode+" up"); break;
-        case key_Right:   console.log(evt.keyCode+" up"); break;
-        case key_Up:      console.log(evt.keyCode+" up"); break;
-        case key_Down:    console.log(evt.keyCode+" up"); break;
-        case key_W:   console.log(evt.keyCode+" up"); break;
-        case key_A:      console.log(evt.keyCode+" up"); break;
-        case key_S:    console.log(evt.keyCode+" up"); break;
-        case key_D:      console.log(evt.keyCode+" up"); break;
-        case key_SpaceBar:    console.log(evt.keyCode+" up"); break;
+        case KEY_CODES.keyLeft:    console.log(evt.keyCode+" up"); break;
+        case KEY_CODES.keyRight:   console.log(evt.keyCode+" up"); break;
+        case KEY_CODES.keyUp:      console.log(evt.keyCode+" up"); break;
+        case KEY_CODES.keyDown:    console.log(evt.keyCode+" up"); break;
+        case KEY_CODES.keyW:   console.log(evt.keyCode+" up"); break;
+        case KEY_CODES.keyA:      console.log(evt.keyCode+" up"); break;
+        case KEY_CODES.keyS:    console.log(evt.keyCode+" up"); break;
+        case KEY_CODES.keyD:      console.log(evt.keyCode+" up"); break;
+        case KEY_CODES.keySpaceBar:    console.log(evt.keyCode+" up"); break;
     }
 }
 
 document.onkeydown = handleKeyDown;
 document.onkeyup = handleKeyUp;
+
+}());

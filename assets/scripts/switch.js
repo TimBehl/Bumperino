@@ -11,28 +11,28 @@ this.Switch = this.Switch || {};
       switch(Switch.currentState){
           case "MENU":
               imageHandler.setUpTitleScreen();
-              setUpTitleScreenButtons();
+              buttonHandler.setUpTitleScreenButtons();
               break;
           case "INSTRUCTION":
               imageHandler.setUpInstructionScreen();
-              setUpInstructionScreenButtons();
+              buttonHandler.setUpInstructionScreenButtons();
               break;
           case "GAME":
               imageHandler.setUpGameScreen();
-              setUpGameScreenButtons();
+              buttonHandler.setUpGameScreenButtons();
               gameLoop();
               break;
           case "MAP_SELECT":
               imageHandler.setUpMapScreen();
-              setUpMapScreenButtons();
+              buttonHandler.setUpMapScreenButtons();
               break;
           case "GAMEOVER":
               removeSprites();
-              setUpGameOverScreen();
-              setUpGameOverButtons();
-              resetScore();
-              resetGameTimer();
-              removeMouseText();
+              imageHandler.setUpGameOverScreen();
+              buttonHandler.setUpGameOverButtons();
+              scoreHandler.resetScore();
+              gameTimer.resetGameTimer();
+              mouseHandler.emoveMouseText();
               break;
           default:
               break;
@@ -45,7 +45,7 @@ this.Switch = this.Switch || {};
       createjs.Ticker.addEventListener("tick", mainLoop);
       createjs.Ticker.setFPS(FPS);
       imageHandler.initScreens();
-      initButtons();
+      buttonHandler.initButtons();
   }
 
   Switch.initMainLoop = initMainLoop;
