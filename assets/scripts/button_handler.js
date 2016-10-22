@@ -16,7 +16,8 @@ this.ButtonHandler = this.ButtonHandler || {};
       menuButton.on("click", (evt) => { Switch.currentState = "MENU"; });
       instructionButton.on("click", (evt) => { Switch.currentState = "INSTRUCTION"; });
       vsPlayerButton.on("click", (evt) => {
-          Switch.currentState = "MAP_SELECT";
+          //Switch.currentState = "MAP_SELECT";
+          Switch.currentState = "GAME";
       });
       vsAIButton.on("click", (evt) => {
           Switch.currentState = "MAP_SELECT";

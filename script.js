@@ -24,6 +24,8 @@ manifest = [
     {src:"scripts/game_timer.js"},
     {src:"scripts/score_handler.js"},
     {src:"scripts/button_handler.js"},
+    {src:"scripts/game_handler.js"},
+    {src:"scripts/player_object.js"},
     {src:"scripts/switch.js"}
 ];
 
@@ -124,9 +126,7 @@ function setupMapThree(){
     }
 }
 
-function gameLoop(){
 
-}
 
 (function main() {
     setupCanvas();

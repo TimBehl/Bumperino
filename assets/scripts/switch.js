@@ -20,7 +20,10 @@ this.Switch = this.Switch || {};
           case "GAME":
               ImageHandler.setUpGameScreen();
               ButtonHandler.setUpGameScreenButtons();
-              gameLoop();
+              if(!GameHandler.init){
+                GameHandler.initGame(true);
+              }
+              GameHandler.gameLoop();
               break;
           case "MAP_SELECT":
               ImageHandler.setUpMapScreen();
