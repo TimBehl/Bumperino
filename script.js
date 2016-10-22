@@ -1,7 +1,7 @@
 var stage;
 var queue;
-var titleScreen, gameScreen, instructionScreen, gameoverScreen, mapScreen;
-var menuButton, instructionButton, vsAIButton, vsPlayerButton;
+var titleScreen, gameScreen, instructionScreen, gameoverScreen, mapScreen, mapOneScreen, mapTwoScreen, mapThreeScreen;
+var menuButton, instructionButton, vsAIButton, vsPlayerButton, mapOneButton, mapTwoButton, mapThreeButton;
 var blockSheet, blockSprite;
 var blockArray = [];
 var stageHeight = 600;
@@ -17,7 +17,12 @@ manifest = [
     {src:"images/instructionbutton.png", id:"instructionbutton"},
     {src:"images/vsAIbutton.png", id:"vsAI"},
     {src:"images/vsplayerbutton.png", id:"vsPlayer"},
-    {src:"images/block.png", id:"block"},
+    {src:"images/mapone.png", id:"mapone"},
+    {src:"images/maptwo.png", id:"maptwo"},
+    {src:"images/mapthree.png", id:"mapthree"},
+    {src:"images/maponebutton.png", id:"maponebutton"},
+    {src:"images/maptwobutton.png", id:"maptwobutton"},
+    {src:"images/mapthreebutton.png", id:"mapthreebutton"},
     {src:"scripts/image_handler.js"},
     {src:"scripts/key_handler.js"},
     {src:"scripts/mouse_handler.js"},
@@ -39,26 +44,17 @@ function loadComplete(evt){
     instructionScreen = new createjs.Bitmap(queue.getResult("instruction"));
     gameoverScreen = new createjs.Bitmap(queue.getResult("gameover"));
     mapScreen = new createjs.Bitmap(queue.getResult("mapselect"));
+    mapOneScreen = new createjs.Bitmap(queue.getResult("mapone"));
+    mapOneButton = new createjs.Bitmap(queue.getResult("maponebutton"));
+    mapTwoScreen = new createjs.Bitmap(queue.getResult("maptwo"));
+    mapTwoButton = new createjs.Bitmap(queue.getResult("maptwobutton"));
+    mapThreeScreen = new createjs.Bitmap(queue.getResult("mapthree"));
+    mapThreeButton = new createjs.Bitmap(queue.getResult("mapthreebutton"));
     menuButton = new createjs.Bitmap(queue.getResult("menubutton"));
     instructionButton = new createjs.Bitmap(queue.getResult("instructionbutton"));
     vsAIButton = new createjs.Bitmap(queue.getResult("vsAI"));
     vsPlayerButton = new createjs.Bitmap(queue.getResult("vsPlayer"));
     console.log("Everything loaded here boss!");
-
-    blockSheet = new createjs.SpriteSheet({
-        "frames": {
-            "width": 10,
-            "numFrames": 1,
-            "regX": 0,
-            "regY": 0,
-            "height": 10
-        },
-        "animations": {
-            "block": [0,0]
-        },
-        "images": [queue.getResult("block")]
-    });
-    blockSprite = new createjs.Sprite(blockSheet);
 
     Switch.initMainLoop();
 }

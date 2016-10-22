@@ -17,9 +17,22 @@ this.Switch = this.Switch || {};
               imageHandler.setUpInstructionScreen();
               buttonHandler.setUpInstructionScreenButtons();
               break;
-          case "GAME":
+          case "GAME_MAPONE":
               imageHandler.setUpGameScreen();
               buttonHandler.setUpGameScreenButtons();
+              imageHandler.setUpMapOne();
+              gameLoop();
+              break;
+          case "GAME_MAPTWO":
+              imageHandler.setUpGameScreen();
+              buttonHandler.setUpGameScreenButtons();
+              imageHandler.setUpMapTwo();
+              gameLoop();
+              break;
+          case "GAME_MAPTHREE":
+              imageHandler.setUpGameScreen();
+              buttonHandler.setUpGameScreenButtons();
+              imageHandler.setUpMapThree();
               gameLoop();
               break;
           case "MAP_SELECT":

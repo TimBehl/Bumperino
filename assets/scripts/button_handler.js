@@ -7,11 +7,18 @@ this.buttonHandler = this.buttonHandler || {};
       instructionButton.y = 400;
       vsPlayerButton.y = 200;
       vsAIButton.y = 300;
+      mapOneButton.y = mapTwoButton.y = mapThreeButton.y = 200;
+      mapOneButton.x = 200;
+      mapTwoButton.x = 350;
+      mapThreeButton.x = 500;
       stage.addChild(menuButton);
       stage.addChild(instructionButton);
       stage.addChild(vsPlayerButton);
       stage.addChild(vsAIButton);
-      menuButton.visible = instructionButton.visible = vsPlayerButton.visible = vsAIButton.visible = false;
+      stage.addChild(mapOneButton);
+      stage.addChild(mapTwoButton);
+      stage.addChild(mapThreeButton);
+      menuButton.visible = instructionButton.visible = vsPlayerButton.visible = vsAIButton.visible = mapOneButton.visible = mapTwoButton.visible = mapThreeButton.visible = false;
       console.log("buttons loaded");
       menuButton.on("click", (evt) => { Switch.currentState = "MENU"; });
       instructionButton.on("click", (evt) => { Switch.currentState = "INSTRUCTION"; });
@@ -20,6 +27,15 @@ this.buttonHandler = this.buttonHandler || {};
       });
       vsAIButton.on("click", (evt) => {
           Switch.currentState = "MAP_SELECT";
+      });
+      mapOneButton.on("click", (evt) => {
+          Switch.currentState = "GAME_MAPONE";
+      });
+      mapTwoButton.on("click", (evt) => {
+          Switch.currentState = "GAME_MAPTWO";
+      });
+      mapThreeButton.on("click", (evt) => {
+          Switch.currentState = "GAME_MAPTHREE";
       });
   }
 
@@ -30,6 +46,9 @@ this.buttonHandler = this.buttonHandler || {};
       instructionButton.visible = true;
       vsAIButton.visible = true;
       vsPlayerButton.visible = true;
+      mapOneButton.visible = false;
+      mapTwoButton.visible = false;
+      mapThreeButton.visible = false;
   }
 
   buttonHandler.setUpTitleScreenButtons = setUpTitleScreenButtons;
@@ -39,6 +58,9 @@ this.buttonHandler = this.buttonHandler || {};
       instructionButton.visible = false;
       vsAIButton.visible = false;
       vsPlayerButton.visible = false;
+      mapOneButton.visible = false;
+      mapTwoButton.visible = false;
+      mapThreeButton.visible = false;
   }
 
   buttonHandler.setUpInstructionScreenButtons = setUpInstructionScreenButtons;
@@ -48,6 +70,9 @@ this.buttonHandler = this.buttonHandler || {};
       instructionButton.visible = false;
       vsAIButton.visible = false;
       vsPlayerButton.visible = false;
+      mapOneButton.visible = false;
+      mapTwoButton.visible = false;
+      mapThreeButton.visible = false;
   }
 
   buttonHandler.setUpGameScreenButtons = setUpGameScreenButtons;
@@ -57,6 +82,9 @@ this.buttonHandler = this.buttonHandler || {};
       instructionButton.visible = false;
       vsAIButton.visible = false;
       vsPlayerButton.visible = false;
+      mapOneButton.visible = false;
+      mapTwoButton.visible = false;
+      mapThreeButton.visible = false;
   }
 
   buttonHandler.setUpGameOverButtons = setUpGameOverButtons;
@@ -66,6 +94,9 @@ this.buttonHandler = this.buttonHandler || {};
       instructionButton.visible = false;
       vsAIButton.visible = false;
       vsPlayerButton.visible = false;
+      mapOneButton.visible = true;
+      mapTwoButton.visible = true;
+      mapThreeButton.visible = true;
   }
 
   buttonHandler.setUpMapScreenButtons = setUpMapScreenButtons;
