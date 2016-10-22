@@ -27,7 +27,6 @@ this.Switch = this.Switch || {};
               buttonHandler.setUpMapScreenButtons();
               break;
           case "GAMEOVER":
-              removeSprites();
               imageHandler.setUpGameOverScreen();
               buttonHandler.setUpGameOverButtons();
               scoreHandler.resetScore();

@@ -70,57 +70,6 @@ function setupCanvas() {
     stage = new createjs.Stage(canvas);
 }
 
-function setupMapOne(){
-    blockArray = [];
-    for(var i = 0; i < stageHeight; i += 10){
-        for(var j = 0; j < stageWidth; j += 10){
-            if((i === 0 || i === stageHeight-10) || (j === 0 || j === stageWidth-10)){
-                blockSprite.x = j;
-                blockSprite.y = i;
-                blockSprite.gotoAndStop("block");
-                blockArray.push(blockSprite.clone());
-            }
-        }
-    }
-    for(var k = 0; k < blockArray.length; k++){
-        stage.addChild(blockArray[k]);
-    }
-}
-
-function setupMapTwo(){
-    blockArray = [];
-    for(var i = 0; i < stageHeight; i += 10){
-        for(var j = 0; j < stageWidth; j += 10){
-            if((i === 0 || i === stageHeight-10) || (j === 0 || j === stageWidth-10)){
-                blockSprite.x = j;
-                blockSprite.y = i;
-                blockSprite.gotoAndStop("block");
-                blockArray.push(blockSprite.clone());
-            }
-        }
-    }
-    for(var k = 0; k < blockArray.length; k++){
-        stage.addChild(blockArray[k]);
-    }
-}
-
-function setupMapThree(){
-    blockArray = [];
-    for(var i = 0; i < stageHeight; i += 10){
-        for(var j = 0; j < stageWidth; j += 10){
-            if((i === 0 || i === stageHeight-10) || (j === 0 || j === stageWidth-10)){
-                blockSprite.x = j;
-                blockSprite.y = i;
-                blockSprite.gotoAndStop("block");
-                blockArray.push(blockSprite.clone());
-            }
-        }
-    }
-    for(var k = 0; k < blockArray.length; k++){
-        stage.addChild(blockArray[k]);
-    }
-}
-
 function gameLoop(){
 
 }
