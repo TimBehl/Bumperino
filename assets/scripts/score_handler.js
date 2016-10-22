@@ -1,4 +1,4 @@
-this.scoreHandler = this.scoreHandler || {};
+this.ScoreHandler = this.ScoreHandler || {};
 
 (function(){
   let score = 0;
@@ -9,7 +9,7 @@ this.scoreHandler = this.scoreHandler || {};
       score = 0;
   }
 
-  scoreHandler.resetScore = resetScore;
+  ScoreHandler.resetScore = resetScore;
 
   let addScoreText = () => {
       stage.removeChild(scoreText);
@@ -19,12 +19,12 @@ this.scoreHandler = this.scoreHandler || {};
       stage.addChild(scoreText);
   }
 
-  scoreHandler.addScoreText = addScoreText;
+  ScoreHandler.addScoreText = addScoreText;
 
   let scoreUpdate = (scoreChange) => {
       score += scoreChange;
       addScoreText();
   }
 
-  scoreHandler.scoreUpdate = scoreUpdate;
+  ScoreHandler.scoreUpdate = scoreUpdate;
 }());

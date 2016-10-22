@@ -10,29 +10,29 @@ this.Switch = this.Switch || {};
   let mainLoop = () => {
       switch(Switch.currentState){
           case "MENU":
-              imageHandler.setUpTitleScreen();
-              buttonHandler.setUpTitleScreenButtons();
+              ImageHandler.setUpTitleScreen();
+              ButtonHandler.setUpTitleScreenButtons();
               break;
           case "INSTRUCTION":
-              imageHandler.setUpInstructionScreen();
-              buttonHandler.setUpInstructionScreenButtons();
+              ImageHandler.setUpInstructionScreen();
+              ButtonHandler.setUpInstructionScreenButtons();
               break;
           case "GAME":
-              imageHandler.setUpGameScreen();
-              buttonHandler.setUpGameScreenButtons();
+              ImageHandler.setUpGameScreen();
+              ButtonHandler.setUpGameScreenButtons();
               gameLoop();
               break;
           case "MAP_SELECT":
-              imageHandler.setUpMapScreen();
-              buttonHandler.setUpMapScreenButtons();
+              ImageHandler.setUpMapScreen();
+              ButtonHandler.setUpMapScreenButtons();
               break;
           case "GAMEOVER":
               removeSprites();
-              imageHandler.setUpGameOverScreen();
-              buttonHandler.setUpGameOverButtons();
-              scoreHandler.resetScore();
-              gameTimer.resetGameTimer();
-              mouseHandler.emoveMouseText();
+              ImageHandler.setUpGameOverScreen();
+              ButtonHandler.setUpGameOverButtons();
+              ScoreHandler.resetScore();
+              GameTimer.resetGameTimer();
+              MouseHandler.emoveMouseText();
               break;
           default:
               break;
@@ -44,8 +44,8 @@ this.Switch = this.Switch || {};
   let initMainLoop = () => {
       createjs.Ticker.addEventListener("tick", mainLoop);
       createjs.Ticker.setFPS(FPS);
-      imageHandler.initScreens();
-      buttonHandler.initButtons();
+      ImageHandler.initScreens();
+      ButtonHandler.initButtons();
   }
 
   Switch.initMainLoop = initMainLoop;

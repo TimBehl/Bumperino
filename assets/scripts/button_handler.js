@@ -1,6 +1,6 @@
-this.buttonHandler = this.buttonHandler || {};
+this.ButtonHandler = this.ButtonHandler || {};
 (function(){
-  
+
   let initButtons = () => {
       menuButton.x = instructionButton.x = vsAIButton.x = vsPlayerButton.x = 275;
       menuButton.y = 400;
@@ -23,7 +23,7 @@ this.buttonHandler = this.buttonHandler || {};
       });
   }
 
-  buttonHandler.initButtons = initButtons;
+  ButtonHandler.initButtons = initButtons;
 
   let setUpTitleScreenButtons = () => {
       menuButton.visible = false;
@@ -32,7 +32,7 @@ this.buttonHandler = this.buttonHandler || {};
       vsPlayerButton.visible = true;
   }
 
-  buttonHandler.setUpTitleScreenButtons = setUpTitleScreenButtons;
+  ButtonHandler.setUpTitleScreenButtons = setUpTitleScreenButtons;
 
   let setUpInstructionScreenButtons = () => {
       menuButton.visible = true;
@@ -41,7 +41,7 @@ this.buttonHandler = this.buttonHandler || {};
       vsPlayerButton.visible = false;
   }
 
-  buttonHandler.setUpInstructionScreenButtons = setUpInstructionScreenButtons;
+  ButtonHandler.setUpInstructionScreenButtons = setUpInstructionScreenButtons;
 
   let setUpGameScreenButtons = () => {
       menuButton.visible = false;
@@ -50,7 +50,7 @@ this.buttonHandler = this.buttonHandler || {};
       vsPlayerButton.visible = false;
   }
 
-  buttonHandler.setUpGameScreenButtons = setUpGameScreenButtons;
+  ButtonHandler.setUpGameScreenButtons = setUpGameScreenButtons;
 
   let setUpGameOverButtons = () => {
       menuButton.visible = true;
@@ -59,7 +59,7 @@ this.buttonHandler = this.buttonHandler || {};
       vsPlayerButton.visible = false;
   }
 
-  buttonHandler.setUpGameOverButtons = setUpGameOverButtons;
+  ButtonHandler.setUpGameOverButtons = setUpGameOverButtons;
 
   let setUpMapScreenButtons = () => {
       menuButton.visible = true;
@@ -68,5 +68,5 @@ this.buttonHandler = this.buttonHandler || {};
       vsPlayerButton.visible = false;
   }
 
-  buttonHandler.setUpMapScreenButtons = setUpMapScreenButtons;
+  ButtonHandler.setUpMapScreenButtons = setUpMapScreenButtons;
 }());

@@ -1,4 +1,4 @@
-this.mouseHandler = this.mouseHandler || {};
+this.MouseHandler = this.MouseHandler || {};
 (function(){
   let mouseX,
       mouseY,
@@ -8,7 +8,7 @@ this.mouseHandler = this.mouseHandler || {};
       stage.removeChild(mouseText);
   }
 
-  mouseHandler.removeMouseText = removeMouseText;
+  MouseHandler.removeMouseText = removeMouseText;
 
   let mouseUpdate = () => {
       stage.on("stagemousemove", (evt) => {
@@ -17,7 +17,7 @@ this.mouseHandler = this.mouseHandler || {};
       });
   }
 
-  mouseHandler.mouseUpdate = mouseUpdate;
+  MouseHandler.mouseUpdate = mouseUpdate;
 
   let addMouseText = () => {
       stage.removeChild(mouseText);
@@ -27,5 +27,5 @@ this.mouseHandler = this.mouseHandler || {};
       stage.addChild(mouseText);
   }
 
-  mouseHandler.addMouseText = addMouseText;
+  MouseHandler.addMouseText = addMouseText;
 }());

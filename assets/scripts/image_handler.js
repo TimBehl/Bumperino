@@ -1,4 +1,4 @@
-this.imageHandler = this.imageHandler || {};
+this.ImageHandler = this.ImageHandler || {};
 (function(){
   let initScreens = () => {
       stage.addChild(titleScreen);
@@ -10,7 +10,7 @@ this.imageHandler = this.imageHandler || {};
       console.log("screen images loaded");
   }
 
-  imageHandler.initScreens = initScreens;
+  ImageHandler.initScreens = initScreens;
 
   let setUpTitleScreen = () => {
       titleScreen.visible = true;
@@ -20,7 +20,7 @@ this.imageHandler = this.imageHandler || {};
       mapScreen.visible = false;
   }
 
-  imageHandler.setUpTitleScreen = setUpTitleScreen;
+  ImageHandler.setUpTitleScreen = setUpTitleScreen;
 
   let setUpGameScreen = () => {
       titleScreen.visible = false;
@@ -30,7 +30,7 @@ this.imageHandler = this.imageHandler || {};
       mapScreen.visible = false;
   }
 
-  imageHandler.setUpGameScreen = setUpGameScreen;
+  ImageHandler.setUpGameScreen = setUpGameScreen;
 
   let setUpInstructionScreen = () => {
       titleScreen.visible = false;
@@ -40,7 +40,7 @@ this.imageHandler = this.imageHandler || {};
       mapScreen.visible = false;
   }
 
-  imageHandler.setUpInstructionScreen = setUpInstructionScreen;
+  ImageHandler.setUpInstructionScreen = setUpInstructionScreen;
 
   let setUpGameOverScreen = () => {
       titleScreen.visible = false;
@@ -50,7 +50,7 @@ this.imageHandler = this.imageHandler || {};
       mapScreen.visible = false;
   }
 
-  imageHandler.setUpGameOverScreen = setUpGameOverScreen;
+  ImageHandler.setUpGameOverScreen = setUpGameOverScreen;
 
   let setUpMapScreen = () => {
       titleScreen.visible = false;
@@ -60,5 +60,5 @@ this.imageHandler = this.imageHandler || {};
       mapScreen.visible = true;
   }
 
-  imageHandler.setUpMapScreen = setUpMapScreen;
+  ImageHandler.setUpMapScreen = setUpMapScreen;
 }());

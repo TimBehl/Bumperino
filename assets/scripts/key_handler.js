@@ -7,7 +7,7 @@
 // var KEY_CODES.keyS = 83;
 // var KEY_CODES.keyD = 68;
 // var KEY_CODES.keySpaceBar = 32;
-this.keyHandler = this.keyHandler || {};
+this.KeyHandler = this.KeyHandler || {};
 (function(){
 
 const KEY_CODES = {

@@ -2,11 +2,10 @@ var stage;
 var queue;
 var titleScreen, gameScreen, instructionScreen, gameoverScreen, mapScreen;
 var menuButton, instructionButton, vsAIButton, vsPlayerButton;
-var blockSheet, blockSprite;
 var blockArray = [];
 var stageHeight = 600;
 var stageWidth = 800;
-
+let spriteSheets = {};
 manifest = [
     {src:"images/titlescreen.jpg", id:"title"},
     {src:"images/gamescreen.jpg", id:"game"},
@@ -18,6 +17,7 @@ manifest = [
     {src:"images/vsAIbutton.png", id:"vsAI"},
     {src:"images/vsplayerbutton.png", id:"vsPlayer"},
     {src:"images/block.png", id:"block"},
+    {src:"sprites/player/Car.png", id:"playerCar"},
     {src:"scripts/image_handler.js"},
     {src:"scripts/key_handler.js"},
     {src:"scripts/mouse_handler.js"},
@@ -43,24 +43,27 @@ function loadComplete(evt){
     instructionButton = new createjs.Bitmap(queue.getResult("instructionbutton"));
     vsAIButton = new createjs.Bitmap(queue.getResult("vsAI"));
     vsPlayerButton = new createjs.Bitmap(queue.getResult("vsPlayer"));
-    console.log("Everything loaded here boss!");
-
-    blockSheet = new createjs.SpriteSheet({
-        "frames": {
-            "width": 10,
-            "numFrames": 1,
-            "regX": 0,
-            "regY": 0,
-            "height": 10
-        },
-        "animations": {
-            "block": [0,0]
-        },
-        "images": [queue.getResult("block")]
-    });
-    blockSprite = new createjs.Sprite(blockSheet);
-
+    loadSpriteSheet((data) => {
+      let json = JSON.parse(data);
+      json.images = [queue.getResult("playerCar")];
+      spriteSheets.playerCar = new createjs.SpriteSheet(json);
+    }, 'sprites/player/Car.json');
+    console.log("All 'ere boss!");
     Switch.initMainLoop();
+}
+
+function loadSpriteSheet(callback, path){
+  //Code for this codeblock used from this source: https://codepen.io/KryptoniteDove/post/load-json-file-locally-using-pure-javascript
+  let file = new XMLHttpRequest();
+  file.overrideMimeType("application/json");
+  file.open('GET', 'assets/' + path, true); // Replace 'my_data' with the path to your file
+  file.onreadystatechange = function () {
+  if (file.readyState == 4 && file.status == 200) {
+      // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+      callback(file.responseText);
+    }
+};
+file.send(null);
 }
 
 function setupCanvas() {

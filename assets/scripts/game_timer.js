@@ -1,12 +1,12 @@
-this.gameTimer = this.gameTimer || {};
+this.GameTimer = this.GameTimer || {};
 (function(){
 let frameCount = 0;
 let timer,
     timerText;
 
-gameTimer.frameCount = frameCount;
-gameTimer.timer = timer;
-gameTimer.timerText = timerText;
+GameTimer.frameCount = frameCount;
+GameTimer.timer = timer;
+GameTimer.timerText = timerText;
 
 let resetGameTimer = () => {
     stage.removeChild(timerText);
@@ -15,16 +15,16 @@ let resetGameTimer = () => {
     timerText = {};
 }
 
-gameTimer.resetGameTimer = resetGameTimer;
+GameTimer.resetGameTimer = resetGameTimer;
 
 let runGameTimer = () => {
     frameCount += 1;
     if(frameCount%(Switch.setFPS/10) === 0) {
-        gameTimer = frameCount/(Switch.setFPS);
+        GameTimer = frameCount/(Switch.setFPS);
     }
 }
 
-gameTimer.runGameTimer = runGameTimer;
+GameTimer.runGameTimer = runGameTimer;
 
 let addTimerText = () => {
     stage.removeChild(timerText);
@@ -34,6 +34,6 @@ let addTimerText = () => {
     stage.addChild(timerText);
 }
 
-gameTimer.addTimerText = addTimerText;
+GameTimer.addTimerText = addTimerText;
 
 }());
