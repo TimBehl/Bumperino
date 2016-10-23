@@ -23,10 +23,10 @@ Player.prototype.movePlayer = function() {
 
   //Accelerating player
   this.vel += 1 * this.movement.forward;
-  if(this.vel > 30){
-    this.vel = 30;
-  } else if (this.vel < -30){
-    this.vel = -30;
+  if(this.vel > 20){
+    this.vel = 20;
+  } else if (this.vel < -20){
+    this.vel = -20;
   }
 
   if(this.movement.forward === 0){

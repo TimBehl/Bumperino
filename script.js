@@ -1,7 +1,8 @@
 var stage;
 var queue;
-var titleScreen, gameScreen, instructionScreen, gameoverScreen, mapScreen;
-var menuButton, instructionButton, vsAIButton, vsPlayerButton;
+var titleScreen, gameScreen, instructionScreen, gameoverScreen, mapScreen, mapOneScreen, mapTwoScreen, mapThreeScreen;
+var menuButton, instructionButton, vsAIButton, vsPlayerButton, mapOneButton, mapTwoButton, mapThreeButton;
+var blockSheet, blockSprite;
 var blockArray = [];
 var stageHeight = 600;
 var stageWidth = 800;
@@ -16,7 +17,12 @@ manifest = [
     {src:"images/instructionbutton.png", id:"instructionbutton"},
     {src:"images/vsAIbutton.png", id:"vsAI"},
     {src:"images/vsplayerbutton.png", id:"vsPlayer"},
-    {src:"images/block.png", id:"block"},
+    {src:"images/mapone.png", id:"mapone"},
+    {src:"images/maptwo.png", id:"maptwo"},
+    {src:"images/mapthree.png", id:"mapthree"},
+    {src:"images/maponebutton.png", id:"maponebutton"},
+    {src:"images/maptwobutton.png", id:"maptwobutton"},
+    {src:"images/mapthreebutton.png", id:"mapthreebutton"},
     {src:"sprites/player/Car.png", id:"playerCar"},
     {src:"scripts/image_handler.js"},
     {src:"scripts/key_handler.js"},
@@ -41,6 +47,12 @@ function loadComplete(evt){
     instructionScreen = new createjs.Bitmap(queue.getResult("instruction"));
     gameoverScreen = new createjs.Bitmap(queue.getResult("gameover"));
     mapScreen = new createjs.Bitmap(queue.getResult("mapselect"));
+    mapOneScreen = new createjs.Bitmap(queue.getResult("mapone"));
+    mapOneButton = new createjs.Bitmap(queue.getResult("maponebutton"));
+    mapTwoScreen = new createjs.Bitmap(queue.getResult("maptwo"));
+    mapTwoButton = new createjs.Bitmap(queue.getResult("maptwobutton"));
+    mapThreeScreen = new createjs.Bitmap(queue.getResult("mapthree"));
+    mapThreeButton = new createjs.Bitmap(queue.getResult("mapthreebutton"));
     menuButton = new createjs.Bitmap(queue.getResult("menubutton"));
     instructionButton = new createjs.Bitmap(queue.getResult("instructionbutton"));
     vsAIButton = new createjs.Bitmap(queue.getResult("vsAI"));
@@ -74,59 +86,6 @@ function setupCanvas() {
     canvas.height = stageHeight;
     stage = new createjs.Stage(canvas);
 }
-
-function setupMapOne(){
-    blockArray = [];
-    for(var i = 0; i < stageHeight; i += 10){
-        for(var j = 0; j < stageWidth; j += 10){
-            if((i === 0 || i === stageHeight-10) || (j === 0 || j === stageWidth-10)){
-                blockSprite.x = j;
-                blockSprite.y = i;
-                blockSprite.gotoAndStop("block");
-                blockArray.push(blockSprite.clone());
-            }
-        }
-    }
-    for(var k = 0; k < blockArray.length; k++){
-        stage.addChild(blockArray[k]);
-    }
-}
-
-function setupMapTwo(){
-    blockArray = [];
-    for(var i = 0; i < stageHeight; i += 10){
-        for(var j = 0; j < stageWidth; j += 10){
-            if((i === 0 || i === stageHeight-10) || (j === 0 || j === stageWidth-10)){
-                blockSprite.x = j;
-                blockSprite.y = i;
-                blockSprite.gotoAndStop("block");
-                blockArray.push(blockSprite.clone());
-            }
-        }
-    }
-    for(var k = 0; k < blockArray.length; k++){
-        stage.addChild(blockArray[k]);
-    }
-}
-
-function setupMapThree(){
-    blockArray = [];
-    for(var i = 0; i < stageHeight; i += 10){
-        for(var j = 0; j < stageWidth; j += 10){
-            if((i === 0 || i === stageHeight-10) || (j === 0 || j === stageWidth-10)){
-                blockSprite.x = j;
-                blockSprite.y = i;
-                blockSprite.gotoAndStop("block");
-                blockArray.push(blockSprite.clone());
-            }
-        }
-    }
-    for(var k = 0; k < blockArray.length; k++){
-        stage.addChild(blockArray[k]);
-    }
-}
-
-
 
 (function main() {
     setupCanvas();

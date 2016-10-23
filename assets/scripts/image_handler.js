@@ -6,7 +6,10 @@ this.ImageHandler = this.ImageHandler || {};
       stage.addChild(instructionScreen);
       stage.addChild(gameoverScreen);
       stage.addChild(mapScreen);
-      titleScreen.visible = gameScreen.visible = instructionScreen.visible = gameoverScreen.visible = mapScreen.visible = false;
+      stage.addChild(mapOneScreen);
+      stage.addChild(mapTwoScreen);
+      stage.addChild(mapThreeScreen);
+      titleScreen.visible = gameScreen.visible = instructionScreen.visible = gameoverScreen.visible = mapScreen.visible = mapOneScreen.visible = mapTwoScreen.visible = mapThreeScreen.visible = false;
       console.log("screen images loaded");
   }
 
@@ -18,6 +21,9 @@ this.ImageHandler = this.ImageHandler || {};
       instructionScreen.visible = false;
       gameoverScreen.visible = false;
       mapScreen.visible = false;
+      mapOneScreen.visible = false;
+      mapTwoScreen.visible = false;
+      mapThreeScreen.visible = false;
   }
 
   ImageHandler.setUpTitleScreen = setUpTitleScreen;
@@ -28,6 +34,9 @@ this.ImageHandler = this.ImageHandler || {};
       instructionScreen.visible = false;
       gameoverScreen.visible = false;
       mapScreen.visible = false;
+      mapOneScreen.visible = false;
+      mapTwoScreen.visible = false;
+      mapThreeScreen.visible = false;
   }
 
   ImageHandler.setUpGameScreen = setUpGameScreen;
@@ -38,6 +47,9 @@ this.ImageHandler = this.ImageHandler || {};
       instructionScreen.visible = true;
       gameoverScreen.visible = false;
       mapScreen.visible = false;
+      mapOneScreen.visible = false;
+      mapTwoScreen.visible = false;
+      mapThreeScreen.visible = false;
   }
 
   ImageHandler.setUpInstructionScreen = setUpInstructionScreen;
@@ -48,6 +60,9 @@ this.ImageHandler = this.ImageHandler || {};
       instructionScreen.visible = false;
       gameoverScreen.visible = true;
       mapScreen.visible = false;
+      mapOneScreen.visible = false;
+      mapTwoScreen.visible = false;
+      mapThreeScreen.visible = false;
   }
 
   ImageHandler.setUpGameOverScreen = setUpGameOverScreen;
@@ -58,7 +73,34 @@ this.ImageHandler = this.ImageHandler || {};
       instructionScreen.visible = false;
       gameoverScreen.visible = false;
       mapScreen.visible = true;
+      mapOneScreen.visible = false;
+      mapTwoScreen.visible = false;
+      mapThreeScreen.visible = false;
   }
 
   ImageHandler.setUpMapScreen = setUpMapScreen;
+
+    let setUpMapOne = () => {
+      mapOneScreen.visible = true;
+      mapTwoScreen.visible = false;
+      mapThreeScreen.visible = false;
+    }
+
+    ImageHandler.setUpMapOne = setUpMapOne;
+
+    let setUpMapTwo = () => {
+      mapOneScreen.visible = false;
+      mapTwoScreen.visible = true;
+      mapThreeScreen.visible = false;
+    }
+
+    ImageHandler.setUpMapTwo = setUpMapTwo;
+
+    let setUpMapThree = () => {
+      mapOneScreen.visible = false;
+      mapTwoScreen.visible = false;
+      mapThreeScreen.visible = true;
+    }
+
+    ImageHandler.setUpMapThree = setUpMapThree;
 }());

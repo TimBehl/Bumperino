@@ -3,8 +3,6 @@ this.Switch = this.Switch || {};
   Switch.currentState = "MENU";
   const FPS = 30;
   Switch.setFPS = FPS;
-
-  console.log("HURRRDURRR IMA WHALE");
   console.log(Switch.setFPS);
 
   let mainLoop = () => {
@@ -23,6 +21,23 @@ this.Switch = this.Switch || {};
               if(!GameHandler.init){
                 GameHandler.initGame(true);
               }
+              GameHandler.gameLoop();
+          case "GAME_MAPONE":
+              ImageHandler.setUpGameScreen();
+              ButtonHandler.setUpGameScreenButtons();
+              ImageHandler.setUpMapOne();
+              GameHandler.gameLoop();
+              break;
+          case "GAME_MAPTWO":
+              ImageHandler.setUpGameScreen();
+              ButtonHandler.setUpGameScreenButtons();
+              ImageHandler.setUpMapTwo();
+              GameHandler.gameLoop();
+              break;
+          case "GAME_MAPTHREE":
+              ImageHandler.setUpGameScreen();
+              ButtonHandler.setUpGameScreenButtons();
+              ImageHandler.setUpMapThree();
               GameHandler.gameLoop();
               break;
           case "MAP_SELECT":

@@ -48,16 +48,16 @@ this.GameHandler = this.GameHandler || {};
     let player1 = new Player("red");
     player1.sprite.x = player1Pos.x;
     player1.sprite.y = player1Pos.y;
-    player1.sprite.scaleX = 0.4;
-    player1.sprite.scaleY = 0.4;
+    player1.sprite.scaleX = 0.25;
+    player1.sprite.scaleY = 0.25;
     GameHandler.activePlayers.push(player1);
 
     if(twoPlayers){
       let player2 = new Player("blue");
       player2.sprite.x = player2Pos.x;
       player2.sprite.y = player2Pos.y;
-      player2.sprite.scaleX = 0.4;
-      player2.sprite.scaleY = 0.4;
+      player2.sprite.scaleX = 0.25;
+      player2.sprite.scaleY = 0.25;
       player2.sprite.rotation = 180;
       GameHandler.activePlayers.push(player2);
     }
