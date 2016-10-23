@@ -26,34 +26,31 @@ let handleKeyDown = (evt) => {
     if(!evt){ var evt = window.event; }  //browser compatibility
     switch(evt.keyCode) {
         case KEY_CODES.keyLeft:
-          console.log(evt.keyCode+" down");
+          GameHandler.playerTurning(1,false);
           return false;
         case KEY_CODES.keyRight:
-          console.log(evt.keyCode+" down");
+          GameHandler.playerTurning(1,true);
           return false;
         case KEY_CODES.keyUp:
-          console.log(evt.keyCode+" down");
+          GameHandler.playerAccelerating(1,true);
           return false;
         case KEY_CODES.keyDown:
-          console.log(evt.keyCode+" down");
+          GameHandler.playerAccelerating(1,false);
           return false;
         case KEY_CODES.keyW:
-          console.log(evt.keyCode+" down");
           GameHandler.playerAccelerating(0,true);
           return false;
         case KEY_CODES.keyA:
-          console.log(evt.keyCode+" down");
           GameHandler.playerTurning(0,false);
           return false;
         case KEY_CODES.keyS:
-          console.log(evt.keyCode+" down");
           GameHandler.playerAccelerating(0,false);
           return false;
         case KEY_CODES.keyD:
           GameHandler.playerTurning(0,true);
           return false;
         case KEY_CODES.keySpaceBar:
-          console.log(evt.keyCode+" down");
+
           return false;
     }
 }
@@ -62,31 +59,31 @@ let handleKeyUp = (evt) => {
     if(!evt){ var evt = window.event; }  //browser compatibility
     switch(evt.keyCode) {
         case KEY_CODES.keyLeft:
-          console.log(evt.keyCode+" up");
+          GameHandler.playerTurning(1);
           break;
         case KEY_CODES.keyRight:
-          console.log(evt.keyCode+" up");
+          GameHandler.playerTurning(1);
           break;
         case KEY_CODES.keyUp:
-          console.log(evt.keyCode+" up");
+          GameHandler.playerAccelerating(1);
           break;
         case KEY_CODES.keyDown:
-          console.log(evt.keyCode+" up");
+          GameHandler.playerAccelerating(1);
           break;
         case KEY_CODES.keyW:
-          console.log(evt.keyCode+" up");
+          GameHandler.playerAccelerating(0);
           break;
         case KEY_CODES.keyA:
-          console.log(evt.keyCode+" up");
+          GameHandler.playerTurning(0);
           break;
         case KEY_CODES.keyS:
-          console.log(evt.keyCode+" up");
+          GameHandler.playerAccelerating(0);
           break;
         case KEY_CODES.keyD:
-          console.log(evt.keyCode+" up");
+          GameHandler.playerTurning(0);
           break;
         case KEY_CODES.keySpaceBar:
-          console.log(evt.keyCode+" up");
+
           break;
     }
 }

@@ -13,18 +13,20 @@ this.GameHandler = this.GameHandler || {};
   GameHandler.initGame = initGame;
 
   let playerAccelerating = (index, forward) => {
+    const stopping = (typeof forward === "undefined") ? 1 : 0;
     if(GameHandler.activePlayers[index]){
       let mod = forward ? 1 : -1;
-      GameHandler.activePlayers[index].acceleratePlayer(mod);
+      GameHandler.activePlayers[index].acceleratePlayer(mod + stopping);
     }
   }
 
   GameHandler.playerAccelerating = playerAccelerating;
 
   let playerTurning = (index, clockwise) => {
+    const stopping = (typeof clockwise === "undefined") ? 1 : 0;
     if(GameHandler.activePlayers[index]){
       let mod = clockwise ? 1 : -1;
-      GameHandler.activePlayers[index].rotatePlayer((5 * mod));
+      GameHandler.activePlayers[index].rotatePlayer(mod + stopping);
     }
   }
 
@@ -51,12 +53,12 @@ this.GameHandler = this.GameHandler || {};
     GameHandler.activePlayers.push(player1);
 
     if(twoPlayers){
-      let player2 = new Player("red");
+      let player2 = new Player("blue");
       player2.sprite.x = player2Pos.x;
       player2.sprite.y = player2Pos.y;
       player2.sprite.scaleX = 0.4;
       player2.sprite.scaleY = 0.4;
-      player2.rotatePlayer(180);
+      player2.sprite.rotation = 180;
       GameHandler.activePlayers.push(player2);
     }
 

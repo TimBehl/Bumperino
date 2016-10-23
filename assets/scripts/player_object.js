@@ -8,11 +8,39 @@ function Player(color) {
   //PLAYER PROPERTIES
   this.vel = 0;
   this.health = 100;
-  this.boosting = false;
-  this.moving = false;
+  //MOVEMENT IT STORED IN NUMBERS RATHER THAN BOOLEANS
+  //POSITIVES WOULD BE FORWARD/CLOCKWISE
+  //NEG WOULD BE BACK/COUNTERCLOCKWISE
+  //0 WOULD BE NO MOVEMENT
+  this.movement = {
+    forward: 0,
+    turning: 0,
+    boosting: 0
+  }
 }
 
 Player.prototype.movePlayer = function() {
+
+  //Accelerating player
+  this.vel += 1 * this.movement.forward;
+  if(this.vel > 30){
+    this.vel = 30;
+  } else if (this.vel < -30){
+    this.vel = -30;
+  }
+
+  if(this.movement.forward === 0){
+    const direction = (this.vel >= 0) ? -0.5 : 0.5;
+    if(this.vel !== 0){
+      this.vel += direction;
+    }
+  }
+
+  //Rotating player
+  const tighterTurnRadius = (this.vel / 4);
+  this.sprite.rotation += this.movement.turning * tighterTurnRadius;
+
+  //Updating pos
   let pt = this.sprite.localToGlobal(this.vel,0);
   let delta = {
     x: (pt.x - this.sprite.x),
@@ -21,23 +49,14 @@ Player.prototype.movePlayer = function() {
   //Update player position on velocity
   this.sprite.x += delta.x;
   this.sprite.y += delta.y;
-  // if(!this.moving){
-  //   this.vel.x -= 4;
-  //   this.vel.y -= 4;
-  // }
+
 
 }
 
 Player.prototype.rotatePlayer = function(deltaAng) {
-  console.log(deltaAng + this.vel);
-  this.sprite.rotation += deltaAng;
+  this.movement.turning = deltaAng;
 }
 
 Player.prototype.acceleratePlayer = function(mod) {
-  this.vel += 1 * mod;
-  if(this.vel > 15){
-    this.vel = 15;
-  } else if (this.vel < -15){
-    this.vel = -15;
-  }
+  this.movement.forward = mod;
 }
