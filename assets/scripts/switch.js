@@ -50,7 +50,7 @@ this.Switch = this.Switch || {};
               ButtonHandler.setUpGameOverButtons();
               ScoreHandler.resetScore();
               GameTimer.resetGameTimer();
-              MouseHandler.emoveMouseText();
+              MouseHandler.removeMouseText();
               break;
           default:
               break;
