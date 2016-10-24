@@ -1,30 +1,45 @@
 this.ScoreHandler = this.ScoreHandler || {};
 
 (function(){
-  let score = 0;
-  let scoreText;
-
-  let resetScore = () => {
-      stage.removeChild(scoreText);
-      score = 0;
-  }
-
-  ScoreHandler.resetScore = resetScore;
-
-  let addScoreText = () => {
-      stage.removeChild(scoreText);
-      scoreText = new createjs.Text("Score: " + score, "12px Arial", "#000");
-      scoreText.x = 10;
-      scoreText.y = 550;
-      stage.addChild(scoreText);
-  }
-
-  ScoreHandler.addScoreText = addScoreText;
-
-  let scoreUpdate = (scoreChange) => {
-      score += scoreChange;
-      addScoreText();
-  }
-
-  ScoreHandler.scoreUpdate = scoreUpdate;
+    let redScore = 0;
+    let blueScore = 0;
+    let scoreText;
+    
+    let resetScore = () => {
+        stage.removeChild(scoreText);
+        redScore = 0;
+        blueScore = 0;
+    }
+    
+    ScoreHandler.resetScore = resetScore;
+    
+    let addScoreText = () => {
+        stage.removeChild(scoreText);
+        scoreText = new createjs.Container();
+        var redText = new createjs.Text(redScore, "54px Arial", "#FFF");
+        redText.x = 240;
+        redText.y = 210;
+        var blueText = new createjs.Text(blueScore, "54px Arial", "#FFF");
+        blueText.x = 510;
+        blueText.y = 210;
+        scoreText.addChild(redText);
+        scoreText.addChild(blueText);
+        stage.addChild(scoreText);
+    }
+    
+    ScoreHandler.addScoreText = addScoreText;
+    
+    let removeScoreText = () => {
+        stage.removeChild(scoreText);
+    }
+    
+    ScoreHandler.removeScoreText = removeScoreText;
+    
+    let scoreUpdate = (redChange, blueChange) => {
+        redScore += redChange;
+        blueScore += blueChange;
+        addScoreText();
+    }
+    
+    ScoreHandler.scoreUpdate = scoreUpdate;
 }());

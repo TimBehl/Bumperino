@@ -1,7 +1,7 @@
 var stage;
 var queue;
 var titleScreen, gameScreen, instructionScreen, gameoverScreen, mapScreen, mapOneScreen, mapTwoScreen, mapThreeScreen;
-var menuButton, instructionButton, vsAIButton, vsPlayerButton, mapOneButton, mapTwoButton, mapThreeButton;
+var menuButton, instructionButton, vsAIButton, vsPlayerButton, mapOneButton, mapTwoButton, mapThreeButton, rematchButton;
 var blockSheet, blockSprite;
 var blockArray = [];
 var stageHeight = 600;
@@ -15,6 +15,7 @@ manifest = [
     {src:"images/mapselectscreen.jpg", id:"mapselect"},
     {src:"images/menubutton.png", id:"menubutton"},
     {src:"images/instructionbutton.png", id:"instructionbutton"},
+    {src:"images/rematchbutton.png", id:"rematchbutton"},
     {src:"images/vsAIbutton.png", id:"vsAI"},
     {src:"images/vsplayerbutton.png", id:"vsPlayer"},
     {src:"images/mapone.png", id:"mapone"},
@@ -57,6 +58,7 @@ function loadComplete(evt){
     instructionButton = new createjs.Bitmap(queue.getResult("instructionbutton"));
     vsAIButton = new createjs.Bitmap(queue.getResult("vsAI"));
     vsPlayerButton = new createjs.Bitmap(queue.getResult("vsPlayer"));
+    rematchButton = new createjs.Bitmap(queue.getResult("rematchbutton"));
     loadSpriteSheet((data) => {
       let json = JSON.parse(data);
       json.images = [queue.getResult("playerCar")];

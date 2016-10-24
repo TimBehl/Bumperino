@@ -10,47 +10,54 @@ this.Switch = this.Switch || {};
           case "MENU":
               ImageHandler.setUpTitleScreen();
               ButtonHandler.setUpTitleScreenButtons();
+              ScoreHandler.resetScore();
               break;
           case "INSTRUCTION":
               ImageHandler.setUpInstructionScreen();
               ButtonHandler.setUpInstructionScreenButtons();
               break;
           case "GAME":
-              ImageHandler.setUpGameScreen();
-              ButtonHandler.setUpGameScreenButtons();
               if(!GameHandler.init){
-                GameHandler.initGame(true);
+                  GameHandler.initGame(true);
               }
               GameHandler.gameLoop();
+              break;
           case "GAME_MAPONE":
               ImageHandler.setUpGameScreen();
               ButtonHandler.setUpGameScreenButtons();
               ImageHandler.setUpMapOne();
-              GameHandler.gameLoop();
+              Switch.currentState = "GAME";
               break;
           case "GAME_MAPTWO":
               ImageHandler.setUpGameScreen();
               ButtonHandler.setUpGameScreenButtons();
               ImageHandler.setUpMapTwo();
-              GameHandler.gameLoop();
+              Switch.currentState = "GAME";
               break;
           case "GAME_MAPTHREE":
               ImageHandler.setUpGameScreen();
               ButtonHandler.setUpGameScreenButtons();
               ImageHandler.setUpMapThree();
-              GameHandler.gameLoop();
+              Switch.currentState = "GAME";
+              break;
+          case "REDWIN":
+              ScoreHandler.scoreUpdate(1,0);
+              Switch.currentState = "GAMEOVER";
+              break;
+          case "BLUEWIN":
+              ScoreHandler.scoreUpdate(0,1);
+              Switch.currentState = "GAMEOVER";
               break;
           case "MAP_SELECT":
               ImageHandler.setUpMapScreen();
               ButtonHandler.setUpMapScreenButtons();
+              ScoreHandler.removeScoreText();
               break;
           case "GAMEOVER":
-              removeSprites();
               ImageHandler.setUpGameOverScreen();
               ButtonHandler.setUpGameOverButtons();
-              ScoreHandler.resetScore();
+              ScoreHandler.addScoreText();
               GameTimer.resetGameTimer();
-              MouseHandler.removeMouseText();
               break;
           default:
               break;
