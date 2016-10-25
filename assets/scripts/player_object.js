@@ -8,6 +8,9 @@ function Player(color) {
   //PLAYER PROPERTIES
   this.vel = 0;
   this.health = 100;
+  this.collided = false; //True when player is recieving collision
+  this.collideRegen = 0;
+  this.collideRegenMax = 15;
   //MOVEMENT IT STORED IN NUMBERS RATHER THAN BOOLEANS
   //POSITIVES WOULD BE FORWARD/CLOCKWISE
   //NEG WOULD BE BACK/COUNTERCLOCKWISE
@@ -23,10 +26,10 @@ Player.prototype.movePlayer = function() {
 
   //Accelerating player
   this.vel += 1 * this.movement.forward;
-  if(this.vel > 20){
-    this.vel = 20;
-  } else if (this.vel < -20){
-    this.vel = -20;
+  if(this.vel > 30){
+    this.vel = 30;
+  } else if (this.vel < -30){
+    this.vel = -30;
   }
 
   if(this.movement.forward === 0){
@@ -37,7 +40,7 @@ Player.prototype.movePlayer = function() {
   }
 
   //Rotating player
-  const tighterTurnRadius = (this.vel / 4);
+  const tighterTurnRadius = (this.vel / 3.5);
   this.sprite.rotation += this.movement.turning * tighterTurnRadius;
 
   //Updating pos

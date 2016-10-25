@@ -1,5 +1,8 @@
 this.ImageHandler = this.ImageHandler || {};
 (function(){
+
+  ImageHandler.currentMap = {};
+
   let initScreens = () => {
       stage.addChild(titleScreen);
       stage.addChild(gameScreen);
@@ -84,6 +87,7 @@ this.ImageHandler = this.ImageHandler || {};
       mapOneScreen.visible = true;
       mapTwoScreen.visible = false;
       mapThreeScreen.visible = false;
+      ImageHandler.currentMap = mapOneScreen;
     }
 
     ImageHandler.setUpMapOne = setUpMapOne;
@@ -92,6 +96,7 @@ this.ImageHandler = this.ImageHandler || {};
       mapOneScreen.visible = false;
       mapTwoScreen.visible = true;
       mapThreeScreen.visible = false;
+      ImageHandler.currentMap = mapTwoScreen;
     }
 
     ImageHandler.setUpMapTwo = setUpMapTwo;
@@ -100,6 +105,7 @@ this.ImageHandler = this.ImageHandler || {};
       mapOneScreen.visible = false;
       mapTwoScreen.visible = false;
       mapThreeScreen.visible = true;
+      ImageHandler.currentMap = mapThreeScreen;
     }
 
     ImageHandler.setUpMapThree = setUpMapThree;

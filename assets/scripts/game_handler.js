@@ -36,9 +36,53 @@ this.GameHandler = this.GameHandler || {};
     GameHandler.activePlayers.forEach((car) => {
       car.movePlayer();
     });
+    bumbieTheStumpies();
   }
 
   GameHandler.gameLoop = gameLoop;
+
+  let bumbieTheStumpies = () => {
+    //Players hit players
+    //Get their vel find out their direction
+    GameHandler.activePlayers.forEach((ent, index, arr) => {
+      let hitWall = false;
+      const local = ent.sprite.localToLocal(10,0,ImageHandler.currentMap);
+      if(ndgmr.checkPixelCollision(ent.sprite, ImageHandler.currentMap, 0, true)){
+        const dir = (ent.vel > 0) ? -1 : 1;
+        ent.vel = (ent.vel * -1) + (80 * dir);
+        hitWall = true;
+      }
+      if(!hitWall && !ent.collided){
+        arr.filter((f) => {return f !== ent}).forEach((otherEnt) => {
+          if(ndgmr.checkPixelCollision(ent.sprite, otherEnt.sprite, 0, true)){
+            const otherEntLocal = otherEnt.sprite.localToGlobal(2000,0);
+            const entLocal = ent.sprite.localToGlobal(-2000,0);
+            //const dir = (ent.vel > 0) ? -1 : 1;
+            //CHECK VEL TIE
+            if(Math.abs(ent.vel) > Math.abs(otherEnt.vel)){
+              // ent.sprite.x = pt_ent.x;
+              // ent.sprite.y = pt_ent.y;
+              // otherEnt.sprite.x = pt_ent.x;
+              // otherEnt.sprite.y = pt_ent.y;
+              // ent.vel = (ent.vel * -1);
+              const delta = ent.vel;
+              otherEnt.sprite.rotation = ent.sprite.rotation;
+              otherEnt.vel = (delta * 100);
+              ent.vel = ent.vel / 100;
+              otherEnt.collided = true;
+            }
+          }
+        });
+      }
+    });
+    GameHandler.activePlayers.filter((f) => {return (f.collided === true)}).forEach((ent) => {
+      ent.collideRegen += 1;
+      if(ent.collideRegen > ent.collideRegenMax){
+        ent.collided = false;
+        ent.collideRegen = 0;
+      }
+    });
+  }
 
   let loadPlayers = (twoPlayers, startPos, startPosTwo) => {
 

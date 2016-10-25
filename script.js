@@ -33,7 +33,8 @@ manifest = [
     {src:"scripts/button_handler.js"},
     {src:"scripts/game_handler.js"},
     {src:"scripts/player_object.js"},
-    {src:"scripts/switch.js"}
+    {src:"scripts/switch.js"},
+    {src:"scripts/ndgmr.Collision.js"}
 ];
 
 function loadFiles() {
