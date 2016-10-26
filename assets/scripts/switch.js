@@ -54,6 +54,7 @@ this.Switch = this.Switch || {};
               ScoreHandler.removeScoreText();
               break;
           case "GAMEOVER":
+              GameHandler.cleanUp();
               ImageHandler.setUpGameOverScreen();
               ButtonHandler.setUpGameOverButtons();
               ScoreHandler.addScoreText();

@@ -37,19 +37,41 @@ this.GameHandler = this.GameHandler || {};
       car.movePlayer();
     });
     bumbieTheStumpies();
+    hasGloryBeenShedOnTheBattleField();
   }
 
   GameHandler.gameLoop = gameLoop;
+
+  let cleanUp = () => {
+    GameHandler.activePlayers.forEach((ent) => {
+      stage.removeChild(ent.sprite);
+    });
+    GameHandler.activePlayers = [];
+    GameHandler.init = false;
+  }
+
+  GameHandler.cleanUp = cleanUp;
+
+  let hasGloryBeenShedOnTheBattleField = () => {
+    //Sets state if victory
+    const remaningWarriors = GameHandler.activePlayers.filter((f) => {return f.health <= 0});
+    if(remaningWarriors.length === 1){
+      Switch.currentState = remaningWarriors[0].color.toString().toUpperCase() + "WIN";
+    }
+  }
 
   let bumbieTheStumpies = () => {
     //Players hit players
     //Get their vel find out their direction
     GameHandler.activePlayers.forEach((ent, index, arr) => {
       let hitWall = false;
-      const local = ent.sprite.localToLocal(10,0,ImageHandler.currentMap);
       if(ndgmr.checkPixelCollision(ent.sprite, ImageHandler.currentMap, 0, true)){
+        const local = ent.sprite.localToGlobal((ent.vel * -1),0);
         const dir = (ent.vel > 0) ? -1 : 1;
-        ent.vel = (ent.vel * -1) + (80 * dir);
+        ent.vel = (ent.vel * -1);
+        ent.sprite.x = local.x;
+        ent.sprite.y = local.y;
+        ent.health -= Math.abs(ent.vel);
         hitWall = true;
       }
       if(!hitWall && !ent.collided){
@@ -66,6 +88,8 @@ this.GameHandler = this.GameHandler || {};
               // otherEnt.sprite.y = pt_ent.y;
               // ent.vel = (ent.vel * -1);
               const delta = ent.vel;
+              otherEnt.health -= (Math.abs(delta) - otherEnt.vel);
+              console.log(otherEnt.health);
               otherEnt.sprite.rotation = ent.sprite.rotation;
               otherEnt.vel = (delta * 100);
               ent.vel = ent.vel / 100;
