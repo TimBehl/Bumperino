@@ -21,6 +21,7 @@ function Player(color) {
     turning: 0,
     boosting: 0
   }
+  
 }
 
 Player.prototype.movePlayer = function() {
