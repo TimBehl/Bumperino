@@ -37,7 +37,8 @@ manifest = [
     {src:"scripts/player_object.js"},
     {src:"scripts/switch.js"},
     {src:"scripts/ndgmr.Collision.js"},
-    {src:"scripts/powerup_handler.js"}
+    {src:"scripts/powerup_handler.js"},
+    {src:"scripts/ui_handler.js"}
 ];
 
 function loadFiles() {

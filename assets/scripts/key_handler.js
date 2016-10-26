@@ -19,7 +19,8 @@ const KEY_CODES = {
   keyA: 65,
   keyS: 83,
   keyD: 68,
-  keySpaceBar: 32
+  keySpaceBar: 32,
+  keyNum0: 96
 }
 
 let handleKeyDown = (evt) => {
@@ -50,7 +51,10 @@ let handleKeyDown = (evt) => {
           GameHandler.playerTurning(0,true);
           return false;
         case KEY_CODES.keySpaceBar:
-
+          GameHandler.playerBoosting(0,true);
+          return false;
+        case KEY_CODES.keyNum0:
+          GameHandler.playerBoosting(1,true);
           return false;
     }
 }
@@ -83,7 +87,10 @@ let handleKeyUp = (evt) => {
           GameHandler.playerTurning(0);
           break;
         case KEY_CODES.keySpaceBar:
-
+          GameHandler.playerBoosting(0,false);
+          break;
+        case KEY_CODES.keyNum0:
+          GameHandler.playerBoosting(1,false);
           break;
     }
 }

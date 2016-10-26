@@ -8,6 +8,8 @@ this.GameHandler = this.GameHandler || {};
     GameHandler.powerups = [];
     loadPlayers(twoPlayers);
     GameHandler.init = true;
+    UiHandler.initBar(10, 40, "#FF0000", function(){return GameHandler.activePlayers[0].health}, 200, "P1 Health");
+    UiHandler.initBar(10, 75, "#FF0000", function(){return GameHandler.activePlayers[1].health}, 200, "P2 Health");
   }
 
   GameHandler.initGame = initGame;
@@ -32,12 +34,31 @@ this.GameHandler = this.GameHandler || {};
 
   GameHandler.playerTurning = playerTurning;
 
+  let playerBoosting = (index, FUCKINGPUNCHINGITHOLYSHITWERETOOFASTWEREGONACRASHHALP) => {
+    if(GameHandler.activePlayers[index].boostMeter > 0){
+      GameHandler.activePlayers[index].holyShitWeHitTheBoosterOnThisOneBois = FUCKINGPUNCHINGITHOLYSHITWERETOOFASTWEREGONACRASHHALP;
+      if(GameHandler.activePlayers[index].sprite.currentAnimation !== GameHandler.activePlayers[index].color + "Boost" && (FUCKINGPUNCHINGITHOLYSHITWERETOOFASTWEREGONACRASHHALP)){
+        GameHandler.activePlayers[index].sprite.gotoAndPlay(GameHandler.activePlayers[index].color.toString() + "Boost");
+      } else {
+        GameHandler.activePlayers[index].sprite.gotoAndPlay(GameHandler.activePlayers[index].color.toString() + "Idle");
+      }
+    } else {
+      GameHandler.activePlayers[index].holyShitWeHitTheBoosterOnThisOneBois = false;
+      if(GameHandler.activePlayers[index].sprite.currentAnimation !== GameHandler.activePlayers[index].color + "Idle"){
+        GameHandler.activePlayers[index].sprite.gotoAndPlay(GameHandler.activePlayers[index].color.toString() + "Idle");
+      }
+    }
+  }
+
+  GameHandler.playerBoosting = playerBoosting;
+
   let gameLoop = () => {
     GameHandler.activePlayers.forEach((car) => {
       car.movePlayer();
     });
     bumbieTheStumpies();
     hasGloryBeenShedOnTheBattleField();
+    UiHandler.updateGui();
   }
 
   GameHandler.gameLoop = gameLoop;
@@ -48,13 +69,14 @@ this.GameHandler = this.GameHandler || {};
     });
     GameHandler.activePlayers = [];
     GameHandler.init = false;
+    UiHandler.clearBars();
   }
 
   GameHandler.cleanUp = cleanUp;
 
   let hasGloryBeenShedOnTheBattleField = () => {
     //Sets state if victory
-    const remaningWarriors = GameHandler.activePlayers.filter((f) => {return f.health <= 0});
+    const remaningWarriors = GameHandler.activePlayers.filter((f) => {return f.health >= 0});
     if(remaningWarriors.length === 1){
       Switch.currentState = remaningWarriors[0].color.toString().toUpperCase() + "WIN";
     }
@@ -65,6 +87,15 @@ this.GameHandler = this.GameHandler || {};
     //Get their vel find out their direction
     GameHandler.activePlayers.forEach((ent, index, arr) => {
       let hitWall = false;
+      PowerUpHandler.boosts.forEach((boot,index) => {
+        if(ndgmr.checkPixelCollision(ent.sprite, boot.image)){
+          boot.used = true;
+          ent.boostMeter += 15;
+          ent.boostMeter = (ent.boostMeter > 100) ? 100 : ent.boostMeter;
+          stage.removeChild(boot.image);
+          }
+        });
+      PowerUpHandler.boosts = PowerUpHandler.boosts.filter((f) => {return f.used === false});
       if(ndgmr.checkPixelCollision(ent.sprite, ImageHandler.currentMap, 0, true)){
         const local = ent.sprite.localToGlobal((ent.vel * -1),0);
         const dir = (ent.vel > 0) ? -1 : 1;
@@ -76,24 +107,20 @@ this.GameHandler = this.GameHandler || {};
       }
       if(!hitWall && !ent.collided){
         arr.filter((f) => {return f !== ent}).forEach((otherEnt) => {
-          if(ndgmr.checkPixelCollision(ent.sprite, otherEnt.sprite, 0, true)){
-            const otherEntLocal = otherEnt.sprite.localToGlobal(2000,0);
-            const entLocal = ent.sprite.localToGlobal(-2000,0);
-            //const dir = (ent.vel > 0) ? -1 : 1;
+          if(!otherEnt.collided && ndgmr.checkPixelCollision(ent.sprite, otherEnt.sprite, 0, true)){
             //CHECK VEL TIE
             if(Math.abs(ent.vel) > Math.abs(otherEnt.vel)){
-              // ent.sprite.x = pt_ent.x;
-              // ent.sprite.y = pt_ent.y;
-              // otherEnt.sprite.x = pt_ent.x;
-              // otherEnt.sprite.y = pt_ent.y;
-              // ent.vel = (ent.vel * -1);
               const delta = ent.vel;
-              otherEnt.health -= (Math.abs(delta) - otherEnt.vel);
-              console.log(otherEnt.health);
+              const damageMod = (ent.holyShitWeHitTheBoosterOnThisOneBois) ? 1.5 : 1;
+              const local = ent.sprite.localToGlobal((ent.vel * -1.5),0);
+              otherEnt.health -= (Math.abs(delta * damageMod) - otherEnt.vel);
               otherEnt.sprite.rotation = ent.sprite.rotation;
               otherEnt.vel = (delta * 100);
               ent.vel = ent.vel / 100;
+              ent.sprite.x = local.x;
+              ent.sprite.y = local.y;
               otherEnt.collided = true;
+              otherEnt.sprite.alpha = 0.7;
             }
           }
         });
@@ -104,6 +131,7 @@ this.GameHandler = this.GameHandler || {};
       if(ent.collideRegen > ent.collideRegenMax){
         ent.collided = false;
         ent.collideRegen = 0;
+        ent.sprite.alpha = 1;
       }
     });
   }
@@ -116,16 +144,15 @@ this.GameHandler = this.GameHandler || {};
     let player1 = new Player("red");
     player1.sprite.x = player1Pos.x;
     player1.sprite.y = player1Pos.y;
-    player1.sprite.scaleX = 0.25;
-    player1.sprite.scaleY = 0.25;
+    player1.sprite.scaleX = 0.3;
+    player1.sprite.scaleY = 0.3;
     GameHandler.activePlayers.push(player1);
-
     if(twoPlayers){
       let player2 = new Player("blue");
       player2.sprite.x = player2Pos.x;
       player2.sprite.y = player2Pos.y;
-      player2.sprite.scaleX = 0.25;
-      player2.sprite.scaleY = 0.25;
+      player2.sprite.scaleX = 0.3;
+      player2.sprite.scaleY = 0.3;
       player2.sprite.rotation = 180;
       GameHandler.activePlayers.push(player2);
     }

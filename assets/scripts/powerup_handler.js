@@ -3,6 +3,7 @@ function Boost(inputX,inputY) {
   this.image.x = inputX;
   this.image.y = inputY;
   this.index = -1;
+  this.used = false;
 }
 
 Boost.prototype.collide = function(collidingPlayer) {
