@@ -3,6 +3,7 @@ var queue;
 var titleScreen, gameScreen, instructionScreen, gameoverScreen, mapScreen, mapOneScreen, mapTwoScreen, mapThreeScreen;
 var menuButton, instructionButton, vsAIButton, vsPlayerButton, mapOneButton, mapTwoButton, mapThreeButton, rematchButton;
 var blockSheet, blockSprite;
+var boostImage;
 var blockArray = [];
 var stageHeight = 600;
 var stageWidth = 800;
@@ -25,6 +26,7 @@ manifest = [
     {src:"images/maptwobutton.png", id:"maptwobutton"},
     {src:"images/mapthreebutton.png", id:"mapthreebutton"},
     {src:"sprites/player/Car.png", id:"playerCar"},
+    {src:"images/speedup.png", id:"speedup"},
     {src:"scripts/image_handler.js"},
     {src:"scripts/key_handler.js"},
     {src:"scripts/mouse_handler.js"},
@@ -34,7 +36,8 @@ manifest = [
     {src:"scripts/game_handler.js"},
     {src:"scripts/player_object.js"},
     {src:"scripts/switch.js"},
-    {src:"scripts/ndgmr.Collision.js"}
+    {src:"scripts/ndgmr.Collision.js"},
+    {src:"scripts/powerup_handler.js"}
 ];
 
 function loadFiles() {
@@ -60,6 +63,7 @@ function loadComplete(evt){
     vsAIButton = new createjs.Bitmap(queue.getResult("vsAI"));
     vsPlayerButton = new createjs.Bitmap(queue.getResult("vsPlayer"));
     rematchButton = new createjs.Bitmap(queue.getResult("rematchbutton"));
+    boostImage = new createjs.Bitmap(queue.getResult("speedup"));
     loadSpriteSheet((data) => {
       let json = JSON.parse(data);
       json.images = [queue.getResult("playerCar")];
