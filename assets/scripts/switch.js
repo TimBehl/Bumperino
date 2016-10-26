@@ -58,6 +58,7 @@ this.Switch = this.Switch || {};
               ButtonHandler.setUpGameOverButtons();
               ScoreHandler.addScoreText();
               GameTimer.resetGameTimer();
+              PowerUpHandler.clearBoosts();
               break;
           default:
               break;

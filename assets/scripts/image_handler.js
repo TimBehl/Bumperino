@@ -88,6 +88,8 @@ this.ImageHandler = this.ImageHandler || {};
       mapTwoScreen.visible = false;
       mapThreeScreen.visible = false;
       ImageHandler.currentMap = mapOneScreen;
+      PowerUpHandler.addRandomBoost();
+      PowerUpHandler.addRandomBoost();
     }
 
     ImageHandler.setUpMapOne = setUpMapOne;
@@ -97,6 +99,9 @@ this.ImageHandler = this.ImageHandler || {};
       mapTwoScreen.visible = true;
       mapThreeScreen.visible = false;
       ImageHandler.currentMap = mapTwoScreen;
+      PowerUpHandler.addRandomBoost();
+      PowerUpHandler.addRandomBoost();
+      PowerUpHandler.addRandomBoost();
     }
 
     ImageHandler.setUpMapTwo = setUpMapTwo;
@@ -106,6 +111,11 @@ this.ImageHandler = this.ImageHandler || {};
       mapTwoScreen.visible = false;
       mapThreeScreen.visible = true;
       ImageHandler.currentMap = mapThreeScreen;
+      PowerUpHandler.addRandomBoost();
+      PowerUpHandler.addRandomBoost();
+      PowerUpHandler.addRandomBoost();
+      PowerUpHandler.addRandomBoost();
+      PowerUpHandler.addRandomBoost();
     }
 
     ImageHandler.setUpMapThree = setUpMapThree;

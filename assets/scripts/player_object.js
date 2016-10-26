@@ -11,6 +11,7 @@ function Player(color) {
   this.collided = false; //True when player is recieving collision
   this.collideRegen = 0;
   this.collideRegenMax = 15;
+  this.boostMeter = 0;
   //MOVEMENT IT STORED IN NUMBERS RATHER THAN BOOLEANS
   //POSITIVES WOULD BE FORWARD/CLOCKWISE
   //NEG WOULD BE BACK/COUNTERCLOCKWISE
