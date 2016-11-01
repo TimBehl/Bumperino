@@ -20,7 +20,7 @@ GameTimer.resetGameTimer = resetGameTimer;
 let runGameTimer = () => {
     frameCount += 1;
     if(frameCount%(Switch.setFPS/10) === 0) {
-        GameTimer = frameCount/(Switch.setFPS);
+        GameTimer.timer = frameCount/(Switch.setFPS);
     }
 }
 
