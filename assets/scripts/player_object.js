@@ -10,7 +10,8 @@ function Player(color) {
   this.health = 200; //Default 200
   this.collided = false; //True when player is recieving collision
   this.collideRegen = 0;
-  this.collideRegenMax = 15;
+  this.collideRegenMax = 60;
+  this.collideVector = {x: 0, y: 0}
   this.boostMeter = 0;
   this.holyShitWeHitTheBoosterOnThisOneBois = false;
   //MOVEMENT IT STORED IN NUMBERS RATHER THAN BOOLEANS
@@ -27,11 +28,27 @@ function Player(color) {
 
 Player.prototype.movePlayer = function() {
   //Accelerating player
-  this.vel += 1 * this.movement.forward;
-  if(this.vel > 30){
+  const timDoesntLikeMeHavingFun = (this.holyShitWeHitTheBoosterOnThisOneBois) ? 5 : 1;
+  this.vel += 0.4 * this.movement.forward * timDoesntLikeMeHavingFun;
+  if(this.vel > 60 * (timDoesntLikeMeHavingFun / 2)){
     this.vel = 30;
-  } else if (this.vel < -30){
+  } else if (this.vel < -60 * (timDoesntLikeMeHavingFun / 2)){
     this.vel = -30;
+  }
+  //Collision vectors
+  // if(this.collideVector.x != 0){
+  //   this.collideVector.x -= (this.collideVector.x / this.collideVector.x) * 5;
+  // } else if(this.collideVector.y != 0) {
+  //   this.collideVector.y -= (this.collideVector.y / this.collideVector.y) * 5;
+  // }
+  //Using the in property to loop through the properties of collideVector. Ive been told this is the one of the important uses
+  for (let pt in this.collideVector){
+    if(this.collideVector[pt] != 0){
+      this.collideVector[pt] = (this.collideVector[pt] > 0) ? (this.collideVector[pt] - 2) : (this.collideVector[pt] + 2);
+    }
+    if (Math.abs(this.collideVector[pt]) <= 5){
+      this.collideVector[pt] = 0;
+    }
   }
 
   if(this.movement.forward === 0){
@@ -42,18 +59,17 @@ Player.prototype.movePlayer = function() {
   }
 
   //Rotating player
-  const tighterTurnRadius = (this.vel / 3.5);
+  const tighterTurnRadius = (this.vel / 3);
   this.sprite.rotation += this.movement.turning * tighterTurnRadius;
 
   //Updating pos
-  this.vel = (this.holyShitWeHitTheBoosterOnThisOneBois) ? 50 : this.vel;
   if(this.holyShitWeHitTheBoosterOnThisOneBois) {
     this.boostMeter -= 1;
   }
   let pt = this.sprite.localToGlobal(this.vel,0);
   let delta = {
-    x: (pt.x - this.sprite.x),
-    y: (pt.y - this.sprite.y)
+    x: (pt.x - this.sprite.x) + (this.collideVector.x / 5),
+    y: (pt.y - this.sprite.y) + (this.collideVector.y / 5)
   }
   //Update player position on velocity
   this.sprite.x += delta.x;
