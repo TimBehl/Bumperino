@@ -40,6 +40,18 @@ this.Switch = this.Switch || {};
               ImageHandler.setUpMapThree();
               Switch.currentState = "GAME";
               break;
+          case "GAME_MAPFOUR":
+              ImageHandler.setUpGameScreen();
+              ButtonHandler.setUpGameScreenButtons();
+              ImageHandler.setUpMapFour();
+              Switch.currentState = "GAME";
+              break;
+          case "GAME_MAPFIVE":
+              ImageHandler.setUpGameScreen();
+              ButtonHandler.setUpGameScreenButtons();
+              ImageHandler.setUpMapFive();
+              Switch.currentState = "GAME";
+              break;
           case "REDWIN":
               ScoreHandler.scoreUpdate(1,0);
               Switch.currentState = "GAMEOVER";

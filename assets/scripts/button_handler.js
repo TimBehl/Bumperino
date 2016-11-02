@@ -9,9 +9,12 @@ this.ButtonHandler = this.ButtonHandler || {};
       vsPlayerButton.y = 200;
       vsAIButton.y = 300;
       mapOneButton.y = mapTwoButton.y = mapThreeButton.y = 200;
+      mapFourButton.y = mapFiveButton.y = 325;
       mapOneButton.x = 200;
       mapTwoButton.x = 350;
       mapThreeButton.x = 500;
+      mapFourButton.x = 275;
+      mapFiveButton.x = 425;
       stage.addChild(menuButton);
       stage.addChild(instructionButton);
       stage.addChild(vsPlayerButton);
@@ -19,8 +22,12 @@ this.ButtonHandler = this.ButtonHandler || {};
       stage.addChild(mapOneButton);
       stage.addChild(mapTwoButton);
       stage.addChild(mapThreeButton);
+      stage.addChild(mapFourButton);
+      stage.addChild(mapFiveButton);
       stage.addChild(rematchButton);
-      menuButton.visible = instructionButton.visible = vsPlayerButton.visible = vsAIButton.visible = mapOneButton.visible = mapTwoButton.visible = mapThreeButton.visible = rematchButton.visible = false;
+      menuButton.visible = instructionButton.visible = vsPlayerButton.visible = vsAIButton.visible =
+      mapOneButton.visible = mapTwoButton.visible = mapThreeButton.visible = rematchButton.visible =
+      mapFourButton.visible = mapFiveButton.visible = false;
       console.log("buttons loaded");
       menuButton.on("click", (evt) => { Switch.currentState = "MENU"; });
       instructionButton.on("click", (evt) => { Switch.currentState = "INSTRUCTION"; });
@@ -39,6 +46,12 @@ this.ButtonHandler = this.ButtonHandler || {};
       mapThreeButton.on("click", (evt) => {
           Switch.currentState = "GAME_MAPTHREE";
       });
+      mapFourButton.on("click", (evt) => {
+          Switch.currentState = "GAME_MAPFOUR";
+      });
+      mapFiveButton.on("click", (evt) => {
+          Switch.currentState = "GAME_MAPFIVE";
+      });
       rematchButton.on("click", (evt) => {
           Switch.currentState = "MAP_SELECT";
       });
@@ -54,6 +67,8 @@ this.ButtonHandler = this.ButtonHandler || {};
       mapOneButton.visible = false;
       mapTwoButton.visible = false;
       mapThreeButton.visible = false;
+      mapFourButton.visible = false;
+      mapFiveButton.visible = false;
       rematchButton.visible = false;
   }
 
@@ -67,6 +82,8 @@ this.ButtonHandler = this.ButtonHandler || {};
       mapOneButton.visible = false;
       mapTwoButton.visible = false;
       mapThreeButton.visible = false;
+      mapFourButton.visible = false;
+      mapFiveButton.visible = false;
       rematchButton.visible = false;
   }
 
@@ -80,6 +97,8 @@ this.ButtonHandler = this.ButtonHandler || {};
       mapOneButton.visible = false;
       mapTwoButton.visible = false;
       mapThreeButton.visible = false;
+      mapFourButton.visible = false;
+      mapFiveButton.visible = false;
       rematchButton.visible = false;
   }
 
@@ -93,6 +112,8 @@ this.ButtonHandler = this.ButtonHandler || {};
       mapOneButton.visible = false;
       mapTwoButton.visible = false;
       mapThreeButton.visible = false;
+      mapFourButton.visible = false;
+      mapFiveButton.visible = false;
       rematchButton.visible = true;
   }
 
@@ -106,6 +127,8 @@ this.ButtonHandler = this.ButtonHandler || {};
       mapOneButton.visible = true;
       mapTwoButton.visible = true;
       mapThreeButton.visible = true;
+      mapFourButton.visible = true;
+      mapFiveButton.visible = true;
       rematchButton.visible = false;
   }
 
