@@ -9,7 +9,7 @@ this.GameHandler = this.GameHandler || {};
     loadPlayers(twoPlayers);
     GameHandler.init = true;
     UiHandler.initBar(10, 40, "#FF0000", function(){return GameHandler.activePlayers[0].health}, 200, "P1 Health");
-    UiHandler.initBar(10, 75, "#FF0000", function(){return GameHandler.activePlayers[1].health}, 200, "P2 Health");
+    UiHandler.initBar(10, 75, "#0000FF", function(){return GameHandler.activePlayers[1].health}, 200, "P2 Health");
   }
 
   GameHandler.initGame = initGame;
@@ -103,9 +103,10 @@ this.GameHandler = this.GameHandler || {};
       if(ndgmr.checkPixelCollision(ent.sprite, ImageHandler.currentMap, 0, true)){
         const local = ent.sprite.localToGlobal((ent.vel * -1),0);
         const dir = (ent.vel > 0) ? -1 : 1;
-        ent.vel = (ent.vel * -1);
-        ent.sprite.x = local.x;
-        ent.sprite.y = local.y;
+        ent.vel = (ent.vel * -0.3) + (dir * 2);
+        ent.sprite.x = local.x - ent.collideVector.x;
+        ent.sprite.y = local.y - ent.collideVector.y;
+        ent.collideVector = {x: 0, y: 0};
         ent.health -= Math.abs(ent.vel);
         hitWall = true;
       }
@@ -115,18 +116,40 @@ this.GameHandler = this.GameHandler || {};
             //CHECK VEL TIE
             if(Math.abs(ent.vel) > Math.abs(otherEnt.vel)){
               const delta = ent.vel;
-              const damageMod = (ent.holyShitWeHitTheBoosterOnThisOneBois) ? 1.5 : 1;
-              const local = ent.sprite.localToGlobal((ent.vel * -1.5),0);
+              const damageMod = (ent.holyShitWeHitTheBoosterOnThisOneBois) ? 3 : 2;
+              const localOffset = ent.sprite.localToGlobal((ent.vel * -2),0);
+              const collisionOffset = ent.sprite.localToGlobal((ent.vel * -2),0);
               otherEnt.health -= (Math.abs(delta * damageMod) - otherEnt.vel);
-              otherEnt.sprite.rotation = ent.sprite.rotation;
-              otherEnt.vel = (delta * 100);
+              //otherEnt.sprite.rotation = ent.sprite.rotation;
+              //otherEnt.vel = delta;
               ent.vel = ent.vel / 100;
-              ent.sprite.x = local.x;
-              ent.sprite.y = local.y;
+              otherEnt.vel = otherEnt.vel / 4;
+              ent.sprite.x = localOffset.x;
+              ent.sprite.y = localOffset.y;
+              otherEnt.collideVector.x = otherEnt.sprite.x - (collisionOffset.x);
+              otherEnt.collideVector.y = otherEnt.sprite.y - (collisionOffset.y);
+              console.log(otherEnt.collideVector);
+              otherEnt.collided = true;
+              otherEnt.sprite.alpha = 0.5;
+            } else if(Math.abs(ent.vel) === Math.abs(otherEnt.vel)){
+              const delta = ent.vel;
+              const damageMod = (ent.holyShitWeHitTheBoosterOnThisOneBois) ? 1.5 : 1;
+
+              otherEnt.health -= (Math.abs(delta * damageMod));
+              ent.health -= (Math.abs(delta * damageMod));
+              otherEnt.sprite.rotation = otherEnt.sprite.rotation * 2;
+              otherEnt.sprite.rotation = ent.sprite.rotation * 2;
+
+              otherEnt.vel = (delta * 10);
+              ent.vel = (delta * 10);
+
               otherEnt.collided = true;
               otherEnt.sprite.alpha = 0.7;
+
+              ent.collided = true;
+              ent.sprite.alpha = 0.7;
             }
-          }
+            }
         });
       }
     });
@@ -148,15 +171,15 @@ this.GameHandler = this.GameHandler || {};
     let player1 = new Player("red");
     player1.sprite.x = player1Pos.x;
     player1.sprite.y = player1Pos.y;
-    player1.sprite.scaleX = 0.3;
-    player1.sprite.scaleY = 0.3;
+    player1.sprite.scaleX = 0.4;
+    player1.sprite.scaleY = 0.4;
     GameHandler.activePlayers.push(player1);
     if(twoPlayers){
       let player2 = new Player("blue");
       player2.sprite.x = player2Pos.x;
       player2.sprite.y = player2Pos.y;
-      player2.sprite.scaleX = 0.3;
-      player2.sprite.scaleY = 0.3;
+      player2.sprite.scaleX = 0.4;
+      player2.sprite.scaleY = 0.4;
       player2.sprite.rotation = 180;
       GameHandler.activePlayers.push(player2);
     }

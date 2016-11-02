@@ -1,7 +1,7 @@
-// var KEY_CODES.keyLeft = 37;
-// var KEY_CODES.keyUp = 38;
-// var KEY_CODES.keyRight = 39;
-// var KEY_CODES.keyDown = 40;
+// var KEY_CODES.keyJ = 37;
+// var KEY_CODES.keyI = 38;
+// var KEY_CODES.keyL = 39;
+// var KEY_CODES.keyK = 40;
 // var KEY_CODES.keyW = 87;
 // var KEY_CODES.keyA = 65;
 // var KEY_CODES.keyS = 83;
@@ -11,31 +11,31 @@ this.KeyHandler = this.KeyHandler || {};
 (function(){
 
 const KEY_CODES = {
-  keyLeft: 37,
-  keyUp: 38,
-  keyRight: 39,
-  keyDown: 40,
+  keyJ: 74,
+  keyI: 73,
+  keyL: 76,
+  keyK: 75,
   keyW: 87,
   keyA: 65,
   keyS: 83,
   keyD: 68,
   keySpaceBar: 32,
-  keyNum0: 96
+  keyEnter: 13
 }
 
 let handleKeyDown = (evt) => {
     if(!evt){ var evt = window.event; }  //browser compatibility
     switch(evt.keyCode) {
-        case KEY_CODES.keyLeft:
+        case KEY_CODES.keyJ:
           GameHandler.playerTurning(1,false);
           return false;
-        case KEY_CODES.keyRight:
+        case KEY_CODES.keyL:
           GameHandler.playerTurning(1,true);
           return false;
-        case KEY_CODES.keyUp:
+        case KEY_CODES.keyI:
           GameHandler.playerAccelerating(1,true);
           return false;
-        case KEY_CODES.keyDown:
+        case KEY_CODES.keyK:
           GameHandler.playerAccelerating(1,false);
           return false;
         case KEY_CODES.keyW:
@@ -53,7 +53,7 @@ let handleKeyDown = (evt) => {
         case KEY_CODES.keySpaceBar:
           GameHandler.playerBoosting(0,true);
           return false;
-        case KEY_CODES.keyNum0:
+        case KEY_CODES.keyEnter:
           GameHandler.playerBoosting(1,true);
           return false;
     }
@@ -62,16 +62,16 @@ let handleKeyDown = (evt) => {
 let handleKeyUp = (evt) => {
     if(!evt){ var evt = window.event; }  //browser compatibility
     switch(evt.keyCode) {
-        case KEY_CODES.keyLeft:
+        case KEY_CODES.keyJ:
           GameHandler.playerTurning(1);
           break;
-        case KEY_CODES.keyRight:
+        case KEY_CODES.keyL:
           GameHandler.playerTurning(1);
           break;
-        case KEY_CODES.keyUp:
+        case KEY_CODES.keyI:
           GameHandler.playerAccelerating(1);
           break;
-        case KEY_CODES.keyDown:
+        case KEY_CODES.keyK:
           GameHandler.playerAccelerating(1);
           break;
         case KEY_CODES.keyW:
@@ -89,7 +89,7 @@ let handleKeyUp = (evt) => {
         case KEY_CODES.keySpaceBar:
           GameHandler.playerBoosting(0,false);
           break;
-        case KEY_CODES.keyNum0:
+        case KEY_CODES.keyEnter:
           GameHandler.playerBoosting(1,false);
           break;
     }
