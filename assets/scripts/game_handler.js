@@ -1,6 +1,11 @@
 this.GameHandler = this.GameHandler || {};
 (function(){
   GameHandler.init = false; //GameHandler has not be called.
+  GameHandler.deathAnimation = {
+    timer: 30,
+    started: false,
+    victor: null
+  };
 
   let initGame = (twoPlayers) => {
     GameHandler.activePlayers = [];
@@ -9,7 +14,9 @@ this.GameHandler = this.GameHandler || {};
     loadPlayers(twoPlayers);
     GameHandler.init = true;
     UiHandler.initBar(10, 40, "#FF0000", function(){return GameHandler.activePlayers[0].health}, 200, "P1 Health");
-    UiHandler.initBar(10, 75, "#0000FF", function(){return GameHandler.activePlayers[1].health}, 200, "P2 Health");
+    UiHandler.initBar(10, 70, "#fdbb1e", function(){return GameHandler.activePlayers[0].boostMeter}, 100, "", 0.5);
+    UiHandler.initBar(670, 40, "#0000FF", function(){return GameHandler.activePlayers[1].health}, 200, "P2 Health");
+    UiHandler.initBar(670, 70, "#fdbb1e", function(){return GameHandler.activePlayers[1].boostMeter}, 100, "", 0.5);
   }
 
   GameHandler.initGame = initGame;
@@ -69,6 +76,9 @@ this.GameHandler = this.GameHandler || {};
     });
     GameHandler.activePlayers = [];
     GameHandler.init = false;
+    GameHandler.deathAnimation.timer = 30;
+    GameHandler.deathAnimation.victor = null;
+    GameHandler.deathAnimation.started = false;
     UiHandler.clearBars();
   }
 
@@ -76,9 +86,18 @@ this.GameHandler = this.GameHandler || {};
 
   let hasGloryBeenShedOnTheBattleField = () => {
     //Sets state if victory
-    const remaningWarriors = GameHandler.activePlayers.filter((f) => {return f.health >= 0});
-    if(remaningWarriors.length === 1){
-      Switch.currentState = remaningWarriors[0].color.toString().toUpperCase() + "WIN";
+    if(GameHandler.deathAnimation.started){
+      GameHandler.deathAnimation.timer -= 0.5;
+      if(GameHandler.deathAnimation.timer < 0) {
+        Switch.currentState = GameHandler.deathAnimation.victor;
+      }
+    }
+    else{
+      const remaningWarriors = GameHandler.activePlayers.filter((f) => {return f.health >= 0});
+      if(remaningWarriors.length === 1){
+        GameHandler.deathAnimation.started = true;
+        GameHandler.deathAnimation.victor = remaningWarriors[0].color.toString().toUpperCase() + "WIN";
+      }
     }
   }
 
