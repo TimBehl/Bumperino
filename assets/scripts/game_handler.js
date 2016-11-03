@@ -21,11 +21,21 @@ this.GameHandler = this.GameHandler || {};
 
   GameHandler.initGame = initGame;
 
+  let getDirection = (vel) => {
+      let dir = 1;
+      if(vel < 0){
+        dir = -1;
+      }
+      return dir;
+  }
+
   let playerAccelerating = (index, forward) => {
     const stopping = (typeof forward === "undefined") ? 1 : 0;
     if(GameHandler.activePlayers[index]){
       let mod = forward ? 1 : -1;
-      GameHandler.activePlayers[index].acceleratePlayer(mod + stopping);
+      let dir = getDirection(GameHandler.activePlayers[index].vel);
+      let breaks = (dir != mod) ? 4 : 1;
+      GameHandler.activePlayers[index].acceleratePlayer((mod + stopping) * breaks);
     }
   }
 
