@@ -141,6 +141,7 @@ this.ImageHandler = this.ImageHandler || {};
       mapFourScreen.visible = true;
       mapFiveScreen.visible = false;
       ImageHandler.currentMap = mapFourScreen;
+      PowerUpHandler.addMapFourBoosts();
     }
 
     ImageHandler.setUpMapFour = setUpMapFour;
@@ -152,6 +153,7 @@ this.ImageHandler = this.ImageHandler || {};
       mapFourScreen.visible = false;
       mapFiveScreen.visible = true;
       ImageHandler.currentMap = mapFiveScreen;
+      PowerUpHandler.addMapFiveBoosts();
     }
 
     ImageHandler.setUpMapFive = setUpMapFive;

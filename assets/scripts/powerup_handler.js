@@ -111,6 +111,50 @@ this.PowerUpHandler = this.PowerUpHandler || {};
 
   PowerUpHandler.addMapThreeBoosts = addMapThreeBoosts;
 
+  let addMapFourBoosts = () => {
+    var xOne = 495;
+    var yOne = 195;
+    var tempBoostOne = new Boost(xOne, yOne);
+    var tempIndexOne = PowerUpHandler.boosts.push(tempBoostOne);
+    stage.addChild(PowerUpHandler.boosts[tempIndexOne-1].image);
+
+    var xTwo = 285;
+    var yTwo = 195;
+    var tempBoostTwo = new Boost(xTwo, yTwo);
+    var tempIndexTwo = PowerUpHandler.boosts.push(tempBoostTwo);
+    stage.addChild(PowerUpHandler.boosts[tempIndexTwo-1].image);
+
+    var xThree = 285;
+    var yThree = 385;
+    var tempBoostThree = new Boost(xThree, yThree);
+    var tempIndexThree = PowerUpHandler.boosts.push(tempBoostThree);
+    stage.addChild(PowerUpHandler.boosts[tempIndexThree-1].image);
+
+    var xFour = 495;
+    var yFour = 385;
+    var tempBoostFour = new Boost(xFour, yFour);
+    var tempIndexFour = PowerUpHandler.boosts.push(tempBoostFour);
+    stage.addChild(PowerUpHandler.boosts[tempIndexFour-1].image);
+  }
+
+  PowerUpHandler.addMapFourBoosts = addMapFourBoosts;
+
+  let addMapFiveBoosts = () => {
+    var xOne = 235;
+    var yOne = 380;
+    var tempBoostOne = new Boost(xOne, yOne);
+    var tempIndexOne = PowerUpHandler.boosts.push(tempBoostOne);
+    stage.addChild(PowerUpHandler.boosts[tempIndexOne-1].image);
+
+    var xTwo = 535;
+    var yTwo = 190;
+    var tempBoostTwo = new Boost(xTwo, yTwo);
+    var tempIndexTwo = PowerUpHandler.boosts.push(tempBoostTwo);
+    stage.addChild(PowerUpHandler.boosts[tempIndexTwo-1].image);
+  }
+
+  PowerUpHandler.addMapFiveBoosts = addMapFiveBoosts;
+
   let clearBoosts = () => {
     for(var i = 0; i < PowerUpHandler.boosts.length; i++){
       stage.removeChild(PowerUpHandler.boosts[i].image);
