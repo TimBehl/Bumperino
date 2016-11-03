@@ -1,7 +1,7 @@
 var stage;
 var queue;
-var titleScreen, gameScreen, instructionScreen, gameoverScreen, mapScreen, mapOneScreen, mapTwoScreen, mapThreeScreen;
-var menuButton, instructionButton, vsAIButton, vsPlayerButton, mapOneButton, mapTwoButton, mapThreeButton, rematchButton;
+var titleScreen, gameScreen, instructionScreen, gameoverScreen, mapScreen, mapOneScreen, mapTwoScreen, mapThreeScreen, mapFourScreen, mapFiveScreen;
+var menuButton, instructionButton, vsAIButton, vsPlayerButton, mapOneButton, mapTwoButton, mapThreeButton, mapFourButton, mapFiveButton, rematchButton;
 var blockSheet, blockSprite;
 var boostImage;
 var blockArray = [];
@@ -22,9 +22,13 @@ manifest = [
     {src:"images/mapone.png", id:"mapone"},
     {src:"images/maptwo.png", id:"maptwo"},
     {src:"images/mapthree.png", id:"mapthree"},
+    {src:"images/mapfour.png", id:"mapfour"},
+    {src:"images/mapfive.png", id:"mapfive"},
     {src:"images/maponebutton.png", id:"maponebutton"},
     {src:"images/maptwobutton.png", id:"maptwobutton"},
     {src:"images/mapthreebutton.png", id:"mapthreebutton"},
+    {src:"images/mapfourbutton.png", id:"mapfourbutton"},
+    {src:"images/mapfivebutton.png", id:"mapfivebutton"},
     {src:"sprites/player/Car.png", id:"playerCar"},
     {src:"images/speedup.png", id:"speedup"},
     {src:"scripts/image_handler.js"},
@@ -59,6 +63,10 @@ function loadComplete(evt){
     mapTwoButton = new createjs.Bitmap(queue.getResult("maptwobutton"));
     mapThreeScreen = new createjs.Bitmap(queue.getResult("mapthree"));
     mapThreeButton = new createjs.Bitmap(queue.getResult("mapthreebutton"));
+    mapFourScreen = new createjs.Bitmap(queue.getResult("mapfour"));
+    mapFourButton = new createjs.Bitmap(queue.getResult("mapfourbutton"));
+    mapFiveScreen = new createjs.Bitmap(queue.getResult("mapfive"));
+    mapFiveButton = new createjs.Bitmap(queue.getResult("mapfivebutton"));
     menuButton = new createjs.Bitmap(queue.getResult("menubutton"));
     instructionButton = new createjs.Bitmap(queue.getResult("instructionbutton"));
     vsAIButton = new createjs.Bitmap(queue.getResult("vsAI"));

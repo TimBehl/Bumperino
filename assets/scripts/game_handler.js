@@ -76,6 +76,10 @@ this.GameHandler = this.GameHandler || {};
     bumbieTheStumpies();
     hasGloryBeenShedOnTheBattleField();
     UiHandler.updateGui();
+    GameTimer.runGameTimer();
+    if(GameTimer.timer % 10 == 0){
+      PowerUpHandler.addRandomBoost();
+    }
   }
 
   GameHandler.gameLoop = gameLoop;

@@ -12,7 +12,12 @@ this.ImageHandler = this.ImageHandler || {};
       stage.addChild(mapOneScreen);
       stage.addChild(mapTwoScreen);
       stage.addChild(mapThreeScreen);
-      titleScreen.visible = gameScreen.visible = instructionScreen.visible = gameoverScreen.visible = mapScreen.visible = mapOneScreen.visible = mapTwoScreen.visible = mapThreeScreen.visible = false;
+      stage.addChild(mapFourScreen);
+      stage.addChild(mapFiveScreen);
+      titleScreen.visible = gameScreen.visible = instructionScreen.visible =
+      gameoverScreen.visible = mapScreen.visible = mapOneScreen.visible =
+      mapTwoScreen.visible = mapThreeScreen.visible = mapFourScreen.visible =
+      mapFiveScreen.visible = false;
       console.log("screen images loaded");
   }
 
@@ -27,6 +32,8 @@ this.ImageHandler = this.ImageHandler || {};
       mapOneScreen.visible = false;
       mapTwoScreen.visible = false;
       mapThreeScreen.visible = false;
+      mapFourScreen.visible = false;
+      mapFiveScreen.visible = false;
   }
 
   ImageHandler.setUpTitleScreen = setUpTitleScreen;
@@ -40,6 +47,8 @@ this.ImageHandler = this.ImageHandler || {};
       mapOneScreen.visible = false;
       mapTwoScreen.visible = false;
       mapThreeScreen.visible = false;
+      mapFourScreen.visible = false;
+      mapFiveScreen.visible = false;
   }
 
   ImageHandler.setUpGameScreen = setUpGameScreen;
@@ -53,6 +62,8 @@ this.ImageHandler = this.ImageHandler || {};
       mapOneScreen.visible = false;
       mapTwoScreen.visible = false;
       mapThreeScreen.visible = false;
+      mapFourScreen.visible = false;
+      mapFiveScreen.visible = false;
   }
 
   ImageHandler.setUpInstructionScreen = setUpInstructionScreen;
@@ -66,6 +77,8 @@ this.ImageHandler = this.ImageHandler || {};
       mapOneScreen.visible = false;
       mapTwoScreen.visible = false;
       mapThreeScreen.visible = false;
+      mapFourScreen.visible = false;
+      mapFiveScreen.visible = false;
   }
 
   ImageHandler.setUpGameOverScreen = setUpGameOverScreen;
@@ -79,6 +92,8 @@ this.ImageHandler = this.ImageHandler || {};
       mapOneScreen.visible = false;
       mapTwoScreen.visible = false;
       mapThreeScreen.visible = false;
+      mapFourScreen.visible = false;
+      mapFiveScreen.visible = false;
   }
 
   ImageHandler.setUpMapScreen = setUpMapScreen;
@@ -87,9 +102,10 @@ this.ImageHandler = this.ImageHandler || {};
       mapOneScreen.visible = true;
       mapTwoScreen.visible = false;
       mapThreeScreen.visible = false;
+      mapFourScreen.visible = false;
+      mapFiveScreen.visible = false;
       ImageHandler.currentMap = mapOneScreen;
-      PowerUpHandler.addRandomBoost();
-      PowerUpHandler.addRandomBoost();
+      PowerUpHandler.addMapOneBoosts();
     }
 
     ImageHandler.setUpMapOne = setUpMapOne;
@@ -98,10 +114,10 @@ this.ImageHandler = this.ImageHandler || {};
       mapOneScreen.visible = false;
       mapTwoScreen.visible = true;
       mapThreeScreen.visible = false;
+      mapFourScreen.visible = false;
+      mapFiveScreen.visible = false;
       ImageHandler.currentMap = mapTwoScreen;
-      PowerUpHandler.addRandomBoost();
-      PowerUpHandler.addRandomBoost();
-      PowerUpHandler.addRandomBoost();
+      PowerUpHandler.addMapTwoBoosts();
     }
 
     ImageHandler.setUpMapTwo = setUpMapTwo;
@@ -110,13 +126,35 @@ this.ImageHandler = this.ImageHandler || {};
       mapOneScreen.visible = false;
       mapTwoScreen.visible = false;
       mapThreeScreen.visible = true;
+      mapFourScreen.visible = false;
+      mapFiveScreen.visible = false;
       ImageHandler.currentMap = mapThreeScreen;
-      PowerUpHandler.addRandomBoost();
-      PowerUpHandler.addRandomBoost();
-      PowerUpHandler.addRandomBoost();
-      PowerUpHandler.addRandomBoost();
-      PowerUpHandler.addRandomBoost();
+      PowerUpHandler.addMapThreeBoosts();
     }
 
     ImageHandler.setUpMapThree = setUpMapThree;
+
+    let setUpMapFour = () => {
+      mapOneScreen.visible = false;
+      mapTwoScreen.visible = false;
+      mapThreeScreen.visible = false;
+      mapFourScreen.visible = true;
+      mapFiveScreen.visible = false;
+      ImageHandler.currentMap = mapFourScreen;
+      PowerUpHandler.addMapFourBoosts();
+    }
+
+    ImageHandler.setUpMapFour = setUpMapFour;
+
+    let setUpMapFive = () => {
+      mapOneScreen.visible = false;
+      mapTwoScreen.visible = false;
+      mapThreeScreen.visible = false;
+      mapFourScreen.visible = false;
+      mapFiveScreen.visible = true;
+      ImageHandler.currentMap = mapFiveScreen;
+      PowerUpHandler.addMapFiveBoosts();
+    }
+
+    ImageHandler.setUpMapFive = setUpMapFive;
 }());
