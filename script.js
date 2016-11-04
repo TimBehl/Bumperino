@@ -4,7 +4,7 @@ var titleScreen, gameScreen, instructionScreen, gameoverScreen, mapScreen, mapOn
 var menuButton, instructionButton, vsAIButton, vsPlayerButton, mapOneButton, mapTwoButton, mapThreeButton, mapFourButton, mapFiveButton, rematchButton, optionButton, soundMuteButton, soundUnmuteButton, musicMuteButton, musicUnmuteButton;
 var blockSheet, blockSprite;
 var boostImage;
-var menuMusic, gameMusic;
+var menuMusic, gameMusic, engineSound;
 var blockArray = [];
 var stageHeight = 600;
 var stageWidth = 800;
@@ -96,6 +96,8 @@ function loadComplete(evt){
     musicUnmuteButton = new createjs.Bitmap(queue.getResult("unmutebutton"));
     gameMusic = createjs.Sound.play("oldacerace", {interrupt: createjs.Sound.INTERRUPT_ANY, volume: .5, loop: -1});
     createjs.Sound.stop(gameMusic);
+    engineSound = createjs.Sound.play("engine", {volume: .05, loop: -1});
+    engineSound.muted = true;
     menuMusic = createjs.Sound.play("sputnikwasgreatonce", {interrupt: createjs.Sound.INTERRUPT_ANY, volume: .5, loop: -1});
     loadSpriteSheet((data) => {
       let json = JSON.parse(data);

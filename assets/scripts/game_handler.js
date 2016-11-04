@@ -19,6 +19,7 @@ this.GameHandler = this.GameHandler || {};
     UiHandler.initBar(10, 70, "#fdbb1e", function(){return GameHandler.activePlayers[0].boostMeter}, 100, "", 0.5);
     UiHandler.initBar(670, 40, "#0000FF", function(){return GameHandler.activePlayers[1].health}, 200, "P2 Health");
     UiHandler.initBar(670, 70, "#fdbb1e", function(){return GameHandler.activePlayers[1].boostMeter}, 100, "", 0.5);
+    SoundHandler.playEngineSound();
   }
 
   GameHandler.initGame = initGame;

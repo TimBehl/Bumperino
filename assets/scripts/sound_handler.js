@@ -73,11 +73,17 @@ this.SoundHandler = this.SoundHandler || {};
 
   let playEngineSound = () => {
     if(SoundHandler.isSoundOn){
-      createjs.Sound.play("engine", {volume: .02});
+      engineSound.muted = false;
     }
   }
 
   SoundHandler.playEngineSound = playEngineSound;
+
+  let stopEngineSound = () => {
+    engineSound.muted = true;
+  }
+
+  SoundHandler.stopEngineSound = stopEngineSound;
 
   let playBoostSound = () => {
     if(SoundHandler.isSoundOn){

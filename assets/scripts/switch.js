@@ -75,6 +75,7 @@ this.Switch = this.Switch || {};
               ScoreHandler.addScoreText();
               GameTimer.resetGameTimer();
               PowerUpHandler.clearBoosts();
+              SoundHandler.stopEngineSound();
               break;
           case "OPTIONS":
               ImageHandler.setUpOptionScreen();
