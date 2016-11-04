@@ -6,7 +6,7 @@ this.GameHandler = this.GameHandler || {};
     started: false,
     victor: null
   };
-  GameHandler.twoPlayers;
+  GameHandler.twoPlayers = false;
 
   let initGame = (twoPlayers) => {
     GameHandler.activePlayers = [];
@@ -31,8 +31,8 @@ this.GameHandler = this.GameHandler || {};
       return dir;
   }
 
-  let playerAccelerating = (index, forward) => {
-    if(!GameHandler.twoPlayers && (index === 1)){
+  let playerAccelerating = (index, forward, iIsBot) => {
+    if(!GameHandler.twoPlayers && (index === 1) && !iIsBot){
       return null;
     }
     const stopping = (typeof forward === "undefined") ? 1 : 0;
@@ -46,8 +46,8 @@ this.GameHandler = this.GameHandler || {};
 
   GameHandler.playerAccelerating = playerAccelerating;
 
-  let playerTurning = (index, clockwise) => {
-    if(!GameHandler.twoPlayers && (index === 1)){
+  let playerTurning = (index, clockwise, iIsBot) => {
+    if(!GameHandler.twoPlayers && (index === 1) && !iIsBot){
       return null;
     }
     const stopping = (typeof clockwise === "undefined") ? 1 : 0;
@@ -78,6 +78,9 @@ this.GameHandler = this.GameHandler || {};
   GameHandler.playerBoosting = playerBoosting;
 
   let gameLoop = () => {
+    if(!GameHandler.twoPlayers){
+      botControl();
+    }
     GameHandler.activePlayers.forEach((car) => {
       car.movePlayer();
     });
@@ -228,7 +231,20 @@ this.GameHandler = this.GameHandler || {};
     const players = GameHandler.activePlayers;
     const playerPos = {x: players[0].sprite.x, y: players[0].sprite.y};
     const botToPlayerVec = players[1].sprite.globalToLocal(playerPos.x, playerPos.y);
-    console.log(botToPlayerVec);
+    const map = players[1].sprite.localToLocal(100,0,ImageHandler.currentMap);
+    //turning
+    const turnDir = (botToPlayerVec.y > 0) ? true : false;
+    if(Math.floor(botToPlayerVec.y) != 0){
+      playerTurning(1,turnDir, true);
+    }
+    //driving
+    const driveDir = (botToPlayerVec.x > 0) ? true : false;
+    console.log(!ImageHandler.currentMap.hitTest(map.x,map.y));
+    if(!ImageHandler.currentMap.hitTest(map.x,map.y)){
+      playerAccelerating(1,driveDir, true);
+    } else {
+      playerAccelerating(1,false, true);
+    }
   }
 
 }());

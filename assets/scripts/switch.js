@@ -19,7 +19,7 @@ this.Switch = this.Switch || {};
           case "GAME":
               if(!GameHandler.init){
                 SoundHandler.playGameMusic();
-                  GameHandler.initGame(true);
+                GameHandler.initGame(false);
               }
               GameHandler.gameLoop();
               break;
