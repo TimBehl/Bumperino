@@ -7,6 +7,11 @@ this.GameHandler = this.GameHandler || {};
     victor: null
   };
   GameHandler.twoPlayers = false;
+  GameHandler.easterEggs = {
+    noclip: false,
+    suddenDeath: false,
+    crazy: false
+  }
 
   let initGame = (twoPlayers) => {
     GameHandler.activePlayers = [];
@@ -64,7 +69,6 @@ this.GameHandler = this.GameHandler || {};
       GameHandler.activePlayers[index].holyShitWeHitTheBoosterOnThisOneBois = FUCKINGPUNCHINGITHOLYSHITWERETOOFASTWEREGONACRASHHALP;
       if(GameHandler.activePlayers[index].sprite.currentAnimation !== GameHandler.activePlayers[index].color + "Boost" && (FUCKINGPUNCHINGITHOLYSHITWERETOOFASTWEREGONACRASHHALP)){
         GameHandler.activePlayers[index].sprite.gotoAndPlay(GameHandler.activePlayers[index].color.toString() + "Boost");
-        SoundHandler.playBoostSound();
       } else {
         GameHandler.activePlayers[index].sprite.gotoAndPlay(GameHandler.activePlayers[index].color.toString() + "Idle");
       }
@@ -91,7 +95,8 @@ this.GameHandler = this.GameHandler || {};
     GameTimer.runGameTimer();
     if(GameTimer.timer % 10 == 0){
       PowerUpHandler.addRandomBoost();
-    }else{
+    }
+    if(GameTimer.timer % 11 == 0){
       PowerUpHandler.reallowBoost();
     }
     PowerUpHandler.alphaBoosts();
@@ -125,7 +130,6 @@ this.GameHandler = this.GameHandler || {};
       const remaningWarriors = GameHandler.activePlayers.filter((f) => {return f.health >= 0});
       if(remaningWarriors.length === 1){
         GameHandler.deathAnimation.started = true;
-        SoundHandler.playExplodeSound();
         GameHandler.deathAnimation.victor = remaningWarriors[0].color.toString().toUpperCase() + "WIN";
       }
     }
@@ -154,7 +158,6 @@ this.GameHandler = this.GameHandler || {};
         ent.collideVector = {x: 0, y: 0};
         ent.health -= Math.abs(ent.vel);
         hitWall = true;
-        SoundHandler.playBumpSound();
       }
       if(!hitWall && !ent.collided){
         arr.filter((f) => {return f !== ent}).forEach((otherEnt) => {
@@ -176,7 +179,6 @@ this.GameHandler = this.GameHandler || {};
               otherEnt.collideVector.y = otherEnt.sprite.y - (collisionOffset.y);
               otherEnt.collided = true;
               otherEnt.sprite.alpha = 0.5;
-              SoundHandler.playBumpSound();
             } else if(Math.abs(ent.vel) === Math.abs(otherEnt.vel)){
               const delta = ent.vel;
               const damageMod = (ent.holyShitWeHitTheBoosterOnThisOneBois) ? 1.5 : 1;
@@ -235,6 +237,7 @@ this.GameHandler = this.GameHandler || {};
     const playerPos = {x: players[0].sprite.x, y: players[0].sprite.y};
     const botToPlayerVec = players[1].sprite.globalToLocal(playerPos.x, playerPos.y);
     const map = players[1].sprite.localToLocal(100,0,ImageHandler.currentMap);
+    const mapAss = players[1].sprite.localToLocal(-100,0,ImageHandler.currentMap);
     //turning
     const turnDir = (botToPlayerVec.y > 0) ? true : false;
     if(Math.floor(botToPlayerVec.y) != 0){
@@ -244,9 +247,17 @@ this.GameHandler = this.GameHandler || {};
     const driveDir = (botToPlayerVec.x > 0) ? true : false;
     if(!ImageHandler.currentMap.hitTest(map.x,map.y)){
       playerAccelerating(1,driveDir, true);
-    } else {
+    } else if (!ImageHandler.currentMap.hitTest(mapAss.x,mapAss.y)){
       playerAccelerating(1,false, true);
     }
+  }
+
+  let suddenDeath = () => {
+
+  }
+
+  let noclip = () => {
+
   }
 
 }());
