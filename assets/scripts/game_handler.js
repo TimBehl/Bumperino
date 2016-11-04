@@ -6,6 +6,7 @@ this.GameHandler = this.GameHandler || {};
     started: false,
     victor: null
   };
+  GameHandler.twoPlayers;
 
   let initGame = (twoPlayers) => {
     GameHandler.activePlayers = [];
@@ -13,6 +14,7 @@ this.GameHandler = this.GameHandler || {};
     GameHandler.powerups = [];
     loadPlayers(twoPlayers);
     GameHandler.init = true;
+    GameHandler.twoPlayers = twoPlayers;
     UiHandler.initBar(10, 40, "#FF0000", function(){return GameHandler.activePlayers[0].health}, 200, "P1 Health");
     UiHandler.initBar(10, 70, "#fdbb1e", function(){return GameHandler.activePlayers[0].boostMeter}, 100, "", 0.5);
     UiHandler.initBar(670, 40, "#0000FF", function(){return GameHandler.activePlayers[1].health}, 200, "P2 Health");
@@ -30,6 +32,9 @@ this.GameHandler = this.GameHandler || {};
   }
 
   let playerAccelerating = (index, forward) => {
+    if(!GameHandler.twoPlayers && (index === 1)){
+      return null;
+    }
     const stopping = (typeof forward === "undefined") ? 1 : 0;
     if(GameHandler.activePlayers[index]){
       let mod = forward ? 1 : -1;
@@ -42,6 +47,9 @@ this.GameHandler = this.GameHandler || {};
   GameHandler.playerAccelerating = playerAccelerating;
 
   let playerTurning = (index, clockwise) => {
+    if(!GameHandler.twoPlayers && (index === 1)){
+      return null;
+    }
     const stopping = (typeof clockwise === "undefined") ? 1 : 0;
     if(GameHandler.activePlayers[index]){
       let mod = clockwise ? 1 : -1;
@@ -206,16 +214,21 @@ this.GameHandler = this.GameHandler || {};
     player1.sprite.scaleX = 0.4;
     player1.sprite.scaleY = 0.4;
     GameHandler.activePlayers.push(player1);
-    if(twoPlayers){
-      let player2 = new Player("blue");
-      player2.sprite.x = player2Pos.x;
-      player2.sprite.y = player2Pos.y;
-      player2.sprite.scaleX = 0.4;
-      player2.sprite.scaleY = 0.4;
-      player2.sprite.rotation = 180;
-      GameHandler.activePlayers.push(player2);
-    }
+
+    let player2 = new Player("blue");
+    player2.sprite.x = player2Pos.x;
+    player2.sprite.y = player2Pos.y;
+    player2.sprite.scaleX = 0.4;
+    player2.sprite.scaleY = 0.4;
+    player2.sprite.rotation = 180;
+    GameHandler.activePlayers.push(player2);
   }
 
+  let botControl = () => {
+    const players = GameHandler.activePlayers;
+    const playerPos = {x: players[0].sprite.x, y: players[0].sprite.y};
+    const botToPlayerVec = players[1].sprite.globalToLocal(playerPos.x, playerPos.y);
+    console.log(botToPlayerVec);
+  }
 
 }());
