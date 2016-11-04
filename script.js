@@ -38,6 +38,11 @@ manifest = [
     {src:"images/speedup.png", id:"speedup"},
     {src:"sound/OldAceRace.mp3", id:"oldacerace"},
     {src:"sound/SputnikWasGreatOnce.mp3", id:"sputnikwasgreatonce"},
+    {src:"sound/dmg_impact.mp3", id:"impact"},
+    {src:"sound/buttonPress.wav", id:"button"},
+    {src:"sound/soundscrate-explosionboom5.mp3", id:"explosion"},
+    {src:"sound/soundscrate-tankengine-loop.mp3", id:"engine"},
+    {src:"sound/soundscrate-videogamebundle-victory.mp3", id:"boost"},
     {src:"scripts/sound_handler.js"},
     {src:"scripts/image_handler.js"},
     {src:"scripts/key_handler.js"},
@@ -56,6 +61,7 @@ manifest = [
 function loadFiles() {
     queue = new createjs.LoadQueue(true, "assets/");
     queue.installPlugin(createjs.Sound);
+    createjs.Sound.alternateExtensions = ["wav"];
     queue.on("complete", loadComplete, this);
     queue.loadManifest(manifest);
 }

@@ -23,12 +23,20 @@ this.PowerUpHandler = this.PowerUpHandler || {};
 
   let addRandomBoost = () => {
     if(PowerUpHandler.boostAllow){
-      var randX = Math.floor(Math.random() * 680) + 50;
-      var randY = Math.floor(Math.random() * 480) + 50;
-      var tempBoost = new Boost(randX, randY);
-      var tempIndex = PowerUpHandler.boosts.push(tempBoost);
-      stage.addChild(PowerUpHandler.boosts[tempIndex-1].image);
-      PowerUpHandler.boostAllow = false;
+      do {
+        var onWall = false;
+        var randX = Math.floor(Math.random() * 680) + 50;
+        var randY = Math.floor(Math.random() * 480) + 50;
+        var tempBoost = new Boost(randX, randY);
+        var tempIndex = PowerUpHandler.boosts.push(tempBoost);
+        stage.addChild(PowerUpHandler.boosts[tempIndex-1].image);
+        if(ndgmr.checkPixelCollision(PowerUpHandler.boosts[tempIndex-1].image, ImageHandler.currentMap, 0, true)){
+          onWall = true;
+          stage.removeChild(PowerUpHandler.boosts[tempIndex-1].image);
+          PowerUpHandler.boosts.splice(tempIndex-1, 1);
+        }
+        PowerUpHandler.boostAllow = false;
+      } while (onWall);
     }
   }
 

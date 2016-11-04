@@ -20,7 +20,8 @@ const KEY_CODES = {
   keyS: 83,
   keyD: 68,
   keySpaceBar: 32,
-  keyEnter: 13
+  keyEnter: 13,
+  keyTilde: 192
 }
 
 let handleKeyDown = (evt) => {
@@ -28,27 +29,33 @@ let handleKeyDown = (evt) => {
     switch(evt.keyCode) {
         case KEY_CODES.keyJ:
           GameHandler.playerTurning(1,false);
+          SoundHandler.playEngineSound();
           return false;
         case KEY_CODES.keyL:
           GameHandler.playerTurning(1,true);
+          SoundHandler.playEngineSound();
           return false;
         case KEY_CODES.keyI:
           GameHandler.playerAccelerating(1,true);
+          SoundHandler.playEngineSound();
           return false;
         case KEY_CODES.keyK:
           GameHandler.playerAccelerating(1,false);
           return false;
         case KEY_CODES.keyW:
           GameHandler.playerAccelerating(0,true);
+          SoundHandler.playEngineSound();
           return false;
         case KEY_CODES.keyA:
           GameHandler.playerTurning(0,false);
+          SoundHandler.playEngineSound();
           return false;
         case KEY_CODES.keyS:
           GameHandler.playerAccelerating(0,false);
           return false;
         case KEY_CODES.keyD:
           GameHandler.playerTurning(0,true);
+          SoundHandler.playEngineSound();
           return false;
         case KEY_CODES.keySpaceBar:
           GameHandler.playerBoosting(0,true);

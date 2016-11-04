@@ -3,6 +3,7 @@ this.Switch = this.Switch || {};
   Switch.currentState = "MENU";
   const FPS = 30;
   Switch.setFPS = FPS;
+  Switch.vsPlayer = false;
   console.log(Switch.setFPS);
 
   let mainLoop = () => {
@@ -19,7 +20,7 @@ this.Switch = this.Switch || {};
           case "GAME":
               if(!GameHandler.init){
                 SoundHandler.playGameMusic();
-                  GameHandler.initGame(true);
+                GameHandler.initGame(Switch.vsPlayer);
               }
               GameHandler.gameLoop();
               break;

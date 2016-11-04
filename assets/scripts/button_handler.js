@@ -39,13 +39,23 @@ this.ButtonHandler = this.ButtonHandler || {};
       mapFourButton.visible = mapFiveButton.visible = optionButton.visible = musicMuteButton.visible =
       musicUnmuteButton.visible = soundMuteButton.visible = soundUnmuteButton.visible = false;
       console.log("buttons loaded");
-      menuButton.on("click", (evt) => { Switch.currentState = "MENU"; });
-      instructionButton.on("click", (evt) => { Switch.currentState = "INSTRUCTION"; });
+      menuButton.on("click", (evt) => {
+        Switch.currentState = "MENU";
+        SoundHandler.playButtonSound();
+      });
+      instructionButton.on("click", (evt) => {
+        Switch.currentState = "INSTRUCTION";
+        SoundHandler.playButtonSound();
+      });
       vsPlayerButton.on("click", (evt) => {
           Switch.currentState = "MAP_SELECT";
+          SoundHandler.playButtonSound();
+          Switch.vsPlayer = true;
       });
       vsAIButton.on("click", (evt) => {
-          Switch.currentState = "GAMEOVER";
+          Switch.currentState = "MAP_SELECT";
+          SoundHandler.playButtonSound();
+          Switch.vsPlayer = false;
       });
       mapOneButton.on("click", (evt) => {
           Switch.currentState = "GAME_MAPONE";
@@ -64,31 +74,37 @@ this.ButtonHandler = this.ButtonHandler || {};
       });
       rematchButton.on("click", (evt) => {
           Switch.currentState = "MAP_SELECT";
+          SoundHandler.playButtonSound();
       });
       optionButton.on("click", (evt) => {
           Switch.currentState = "OPTIONS";
+          SoundHandler.playButtonSound();
       });
       soundMuteButton.on("click", (evt) => {
-          SoundHandler.isSoundOn = false;
           soundMuteButton.visible = false;
           soundUnmuteButton.visible = true;
+          SoundHandler.muteSound();
+          SoundHandler.playButtonSound();
       });
       soundUnmuteButton.on("click", (evt) => {
-          SoundHandler.isSoundOn = true;
           soundMuteButton.visible = true;
           soundUnmuteButton.visible = false;
+          SoundHandler.unmuteSound();
+          SoundHandler.playButtonSound();
       });
       musicMuteButton.on("click", (evt) => {
           SoundHandler.isMusicOn = false;
           musicMuteButton.visible = false;
           musicUnmuteButton.visible = true;
           SoundHandler.muteMusic();
+          SoundHandler.playButtonSound();
       });
       musicUnmuteButton.on("click", (evt) => {
           SoundHandler.isMusicOn = true;
           musicMuteButton.visible = true;
           musicUnmuteButton.visible = false;
           SoundHandler.unmuteMusic();
+          SoundHandler.playButtonSound();
       });
   }
 
