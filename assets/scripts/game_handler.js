@@ -239,7 +239,6 @@ this.GameHandler = this.GameHandler || {};
     }
     //driving
     const driveDir = (botToPlayerVec.x > 0) ? true : false;
-    console.log(!ImageHandler.currentMap.hitTest(map.x,map.y));
     if(!ImageHandler.currentMap.hitTest(map.x,map.y)){
       playerAccelerating(1,driveDir, true);
     } else {
