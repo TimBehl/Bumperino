@@ -40,25 +40,27 @@ this.GameHandler = this.GameHandler || {};
     if(!GameHandler.twoPlayers && (index === 1) && !iIsBot){
       return null;
     }
+    const crazy = GameHandler.easterEggs.crazy ?  100 : 1
     const stopping = (typeof forward === "undefined") ? 1 : 0;
     if(GameHandler.activePlayers[index]){
       let mod = forward ? 1 : -1;
       let dir = getDirection(GameHandler.activePlayers[index].vel);
       let breaks = (dir != mod) ? 2.5 : 1;
-      GameHandler.activePlayers[index].acceleratePlayer((mod + stopping) * breaks);
+      GameHandler.activePlayers[index].acceleratePlayer((mod + stopping) * breaks * crazy);
     }
   }
 
   GameHandler.playerAccelerating = playerAccelerating;
 
   let playerTurning = (index, clockwise, iIsBot) => {
+    const crazy = GameHandler.easterEggs.crazy ? ((Math.random() * 8) + 1) : 1
     if(!GameHandler.twoPlayers && (index === 1) && !iIsBot){
       return null;
     }
     const stopping = (typeof clockwise === "undefined") ? 1 : 0;
     if(GameHandler.activePlayers[index]){
       let mod = clockwise ? 1 : -1;
-      GameHandler.activePlayers[index].rotatePlayer(mod + stopping);
+      GameHandler.activePlayers[index].rotatePlayer((mod + stopping) * crazy);
     }
   }
 
@@ -100,6 +102,7 @@ this.GameHandler = this.GameHandler || {};
       PowerUpHandler.reallowBoost();
     }
     PowerUpHandler.alphaBoosts();
+    runEasterEggs();
   }
 
   GameHandler.gameLoop = gameLoop;
@@ -149,7 +152,7 @@ this.GameHandler = this.GameHandler || {};
           }
         });
       PowerUpHandler.boosts = PowerUpHandler.boosts.filter((f) => {return f.used === false});
-      if(ndgmr.checkPixelCollision(ent.sprite, ImageHandler.currentMap, 0, true)){
+      if(ndgmr.checkPixelCollision(ent.sprite, ImageHandler.currentMap, 0, true) && !GameHandler.easterEggs.noclip){
         const local = ent.sprite.localToGlobal((ent.vel * -1),0);
         const dir = (ent.vel > 0) ? -1 : 1;
         ent.vel = (ent.vel * -0.3) + (dir * 2);
@@ -252,12 +255,20 @@ this.GameHandler = this.GameHandler || {};
     }
   }
 
+  let runEasterEggs = () => {
+    if(GameHandler.easterEggs.suddenDeath){
+      suddenDeath();
+    }
+  }
+
   let suddenDeath = () => {
-
+    GameHandler.activePlayers.forEach((e) => {
+      e.health -= 0.2;
+      if(GameHandler.activePlayers[0].health < 0){
+        GameHandler.activePlayers[0].health += 1;
+      }
+    });
   }
 
-  let noclip = () => {
-
-  }
 
 }());
