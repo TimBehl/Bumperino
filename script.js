@@ -1,9 +1,10 @@
 var stage;
 var queue;
-var titleScreen, gameScreen, instructionScreen, gameoverScreen, mapScreen, mapOneScreen, mapTwoScreen, mapThreeScreen, mapFourScreen, mapFiveScreen;
-var menuButton, instructionButton, vsAIButton, vsPlayerButton, mapOneButton, mapTwoButton, mapThreeButton, mapFourButton, mapFiveButton, rematchButton;
+var titleScreen, gameScreen, instructionScreen, gameoverScreen, mapScreen, mapOneScreen, mapTwoScreen, mapThreeScreen, mapFourScreen, mapFiveScreen, optionScreen;
+var menuButton, instructionButton, vsAIButton, vsPlayerButton, mapOneButton, mapTwoButton, mapThreeButton, mapFourButton, mapFiveButton, rematchButton, optionButton, soundMuteButton, soundUnmuteButton, musicMuteButton, musicUnmuteButton;
 var blockSheet, blockSprite;
 var boostImage;
+var menuMusic, gameMusic;
 var blockArray = [];
 var stageHeight = 600;
 var stageWidth = 800;
@@ -29,8 +30,15 @@ manifest = [
     {src:"images/mapthreebutton.png", id:"mapthreebutton"},
     {src:"images/mapfourbutton.png", id:"mapfourbutton"},
     {src:"images/mapfivebutton.png", id:"mapfivebutton"},
+    {src:"images/optionscreen.jpg", id:"optionscreen"},
+    {src:"images/optionbutton.png", id:"optionbutton"},
+    {src:"images/mutebutton.png", id:"mutebutton"},
+    {src:"images/unmutebutton.png", id:"unmutebutton"},
     {src:"sprites/player/Car.png", id:"playerCar"},
     {src:"images/speedup.png", id:"speedup"},
+    {src:"sound/OldAceRace.mp3", id:"oldacerace"},
+    {src:"sound/SputnikWasGreatOnce.mp3", id:"sputnikwasgreatonce"},
+    {src:"scripts/sound_handler.js"},
     {src:"scripts/image_handler.js"},
     {src:"scripts/key_handler.js"},
     {src:"scripts/mouse_handler.js"},
@@ -47,6 +55,7 @@ manifest = [
 
 function loadFiles() {
     queue = new createjs.LoadQueue(true, "assets/");
+    queue.installPlugin(createjs.Sound);
     queue.on("complete", loadComplete, this);
     queue.loadManifest(manifest);
 }
@@ -57,6 +66,7 @@ function loadComplete(evt){
     instructionScreen = new createjs.Bitmap(queue.getResult("instruction"));
     gameoverScreen = new createjs.Bitmap(queue.getResult("gameover"));
     mapScreen = new createjs.Bitmap(queue.getResult("mapselect"));
+    optionScreen = new createjs.Bitmap(queue.getResult("optionscreen"));
     mapOneScreen = new createjs.Bitmap(queue.getResult("mapone"));
     mapOneButton = new createjs.Bitmap(queue.getResult("maponebutton"));
     mapTwoScreen = new createjs.Bitmap(queue.getResult("maptwo"));
@@ -73,6 +83,14 @@ function loadComplete(evt){
     vsPlayerButton = new createjs.Bitmap(queue.getResult("vsPlayer"));
     rematchButton = new createjs.Bitmap(queue.getResult("rematchbutton"));
     boostImage = new createjs.Bitmap(queue.getResult("speedup"));
+    optionButton = new createjs.Bitmap(queue.getResult("optionbutton"));
+    soundMuteButton = new createjs.Bitmap(queue.getResult("mutebutton"));
+    soundUnmuteButton = new createjs.Bitmap(queue.getResult("unmutebutton"));
+    musicMuteButton = new createjs.Bitmap(queue.getResult("mutebutton"));
+    musicUnmuteButton = new createjs.Bitmap(queue.getResult("unmutebutton"));
+    gameMusic = createjs.Sound.play("oldacerace", {interrupt: createjs.Sound.INTERRUPT_ANY, volume: .5, loop: -1});
+    createjs.Sound.stop(gameMusic);
+    menuMusic = createjs.Sound.play("sputnikwasgreatonce", {interrupt: createjs.Sound.INTERRUPT_ANY, volume: .5, loop: -1});
     loadSpriteSheet((data) => {
       let json = JSON.parse(data);
       json.images = [queue.getResult("playerCar")];

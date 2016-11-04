@@ -80,6 +80,10 @@ this.GameHandler = this.GameHandler || {};
     if(GameTimer.timer % 10 == 0){
       PowerUpHandler.addRandomBoost();
     }
+    if(GameTimer.timer % 11 == 0){
+      PowerUpHandler.reallowBoost();
+    }
+    PowerUpHandler.alphaBoosts();
   }
 
   GameHandler.gameLoop = gameLoop;

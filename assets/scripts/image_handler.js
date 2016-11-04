@@ -14,10 +14,11 @@ this.ImageHandler = this.ImageHandler || {};
       stage.addChild(mapThreeScreen);
       stage.addChild(mapFourScreen);
       stage.addChild(mapFiveScreen);
+      stage.addChild(optionScreen);
       titleScreen.visible = gameScreen.visible = instructionScreen.visible =
       gameoverScreen.visible = mapScreen.visible = mapOneScreen.visible =
       mapTwoScreen.visible = mapThreeScreen.visible = mapFourScreen.visible =
-      mapFiveScreen.visible = false;
+      mapFiveScreen.visible = optionScreen.visible = false;
       console.log("screen images loaded");
   }
 
@@ -34,6 +35,7 @@ this.ImageHandler = this.ImageHandler || {};
       mapThreeScreen.visible = false;
       mapFourScreen.visible = false;
       mapFiveScreen.visible = false;
+      optionScreen.visible = false;
   }
 
   ImageHandler.setUpTitleScreen = setUpTitleScreen;
@@ -49,6 +51,7 @@ this.ImageHandler = this.ImageHandler || {};
       mapThreeScreen.visible = false;
       mapFourScreen.visible = false;
       mapFiveScreen.visible = false;
+      optionScreen.visible = false;
   }
 
   ImageHandler.setUpGameScreen = setUpGameScreen;
@@ -64,6 +67,7 @@ this.ImageHandler = this.ImageHandler || {};
       mapThreeScreen.visible = false;
       mapFourScreen.visible = false;
       mapFiveScreen.visible = false;
+      optionScreen.visible = false;
   }
 
   ImageHandler.setUpInstructionScreen = setUpInstructionScreen;
@@ -79,6 +83,7 @@ this.ImageHandler = this.ImageHandler || {};
       mapThreeScreen.visible = false;
       mapFourScreen.visible = false;
       mapFiveScreen.visible = false;
+      optionScreen.visible = false;
   }
 
   ImageHandler.setUpGameOverScreen = setUpGameOverScreen;
@@ -94,9 +99,26 @@ this.ImageHandler = this.ImageHandler || {};
       mapThreeScreen.visible = false;
       mapFourScreen.visible = false;
       mapFiveScreen.visible = false;
+      optionScreen.visible = false;
   }
 
   ImageHandler.setUpMapScreen = setUpMapScreen;
+
+  let setUpOptionScreen = () => {
+    titleScreen.visible = false;
+    gameScreen.visible = false;
+    instructionScreen.visible = false;
+    gameoverScreen.visible = false;
+    mapScreen.visible = false;
+    mapOneScreen.visible = false;
+    mapTwoScreen.visible = false;
+    mapThreeScreen.visible = false;
+    mapFourScreen.visible = false;
+    mapFiveScreen.visible = false;
+    optionScreen.visible = true;
+  }
+
+  ImageHandler.setUpOptionScreen = setUpOptionScreen;
 
     let setUpMapOne = () => {
       mapOneScreen.visible = true;
