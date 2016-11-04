@@ -18,6 +18,7 @@ this.Switch = this.Switch || {};
               break;
           case "GAME":
               if(!GameHandler.init){
+                SoundHandler.playGameMusic();
                   GameHandler.initGame(true);
               }
               GameHandler.gameLoop();
@@ -54,10 +55,12 @@ this.Switch = this.Switch || {};
               break;
           case "REDWIN":
               ScoreHandler.scoreUpdate(1,0);
+              SoundHandler.playMenuMusic();
               Switch.currentState = "GAMEOVER";
               break;
           case "BLUEWIN":
               ScoreHandler.scoreUpdate(0,1);
+              SoundHandler.playMenuMusic();
               Switch.currentState = "GAMEOVER";
               break;
           case "MAP_SELECT":
@@ -72,6 +75,10 @@ this.Switch = this.Switch || {};
               ScoreHandler.addScoreText();
               GameTimer.resetGameTimer();
               PowerUpHandler.clearBoosts();
+              break;
+          case "OPTIONS":
+              ImageHandler.setUpOptionScreen();
+              ButtonHandler.setUpOptionButtons();
               break;
           default:
               break;

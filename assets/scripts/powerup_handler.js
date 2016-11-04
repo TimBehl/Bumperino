@@ -4,6 +4,8 @@ function Boost(inputX,inputY) {
   this.image.y = inputY;
   this.index = -1;
   this.used = false;
+  this.currentAlpha = 0;
+  this.atMaxAlpha = (this.currentAlpha >= 1);
 }
 
 Boost.prototype.collide = function(collidingPlayer) {
@@ -15,17 +17,28 @@ Boost.prototype.collide = function(collidingPlayer) {
 this.PowerUpHandler = this.PowerUpHandler || {};
 (function() {
 
+  PowerUpHandler.boostAllow = true;
+
   PowerUpHandler.boosts = [];
 
   let addRandomBoost = () => {
-    var randX = Math.floor(Math.random() * 680) + 50;
-    var randY = Math.floor(Math.random() * 480) + 50;
-    var tempBoost = new Boost(randX, randY);
-    var tempIndex = PowerUpHandler.boosts.push(tempBoost);
-    stage.addChild(PowerUpHandler.boosts[tempIndex-1].image);
+    if(PowerUpHandler.boostAllow){
+      var randX = Math.floor(Math.random() * 680) + 50;
+      var randY = Math.floor(Math.random() * 480) + 50;
+      var tempBoost = new Boost(randX, randY);
+      var tempIndex = PowerUpHandler.boosts.push(tempBoost);
+      stage.addChild(PowerUpHandler.boosts[tempIndex-1].image);
+      PowerUpHandler.boostAllow = false;
+    }
   }
 
   PowerUpHandler.addRandomBoost = addRandomBoost;
+
+  let reallowBoost = () => {
+    PowerUpHandler.boostAllow = true;
+  }
+
+  PowerUpHandler.reallowBoost = reallowBoost;
 
   let addMapOneBoosts = () => {
     var xOne = 235;
@@ -163,5 +176,18 @@ this.PowerUpHandler = this.PowerUpHandler || {};
   }
 
   PowerUpHandler.clearBoosts = clearBoosts;
+
+let alphaBoosts = () => {
+  for(var i = 0; i < PowerUpHandler.boosts.length; i++){
+    if(!PowerUpHandler.boosts[i].atMaxAlpha){
+      PowerUpHandler.boosts[i].currentAlpha += .1;
+      PowerUpHandler.boosts[i].image.set({alpha: PowerUpHandler.boosts[i].currentAlpha});
+      stage.removeChild(PowerUpHandler.boosts[i].image);
+      stage.addChild(PowerUpHandler.boosts[i].image);
+    }
+  }
+}
+
+PowerUpHandler.alphaBoosts = alphaBoosts;
 
 })();
