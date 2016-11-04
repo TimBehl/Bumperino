@@ -97,16 +97,21 @@ let handleKeyUp = (evt) => {
           var devConsole = prompt("Insert your console command here.");
           switch (devConsole) {
             case "suddendeath":
-
+              GameHandler.easterEggs.suddenDeath = true;
+              window.alert("Sudden Death mode activated.");
               break;
             case "jamie":
-
+              GameHandler.activePlayers[0].health = 200;
+              GameHandler.activePlayers[0].boostMeter = 100;
+              window.alert("Jamie code activated.")
               break;
             case "noclip":
-
+              GameHandler.easterEggs.noclip = true;
+              window.alert("Noclip mode activated.");
               break;
             case "crazy":
-
+              GameHandler.easterEggs.crazy = true;
+              window.alert("Crazy mode activated");
               break;
             default:
               window.alert("Invalid command.");

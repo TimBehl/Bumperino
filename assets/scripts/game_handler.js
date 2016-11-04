@@ -14,6 +14,7 @@ this.GameHandler = this.GameHandler || {};
   }
 
   let initGame = (twoPlayers) => {
+    GameHandler.easterEggs.noclip = GameHandler.easterEggs.suddenDeath = GameHandler.easterEggs.crazy = false;
     GameHandler.activePlayers = [];
     GameHandler.activeAI = [];
     GameHandler.powerups = [];
@@ -72,6 +73,7 @@ this.GameHandler = this.GameHandler || {};
       GameHandler.activePlayers[index].holyShitWeHitTheBoosterOnThisOneBois = FUCKINGPUNCHINGITHOLYSHITWERETOOFASTWEREGONACRASHHALP;
       if(GameHandler.activePlayers[index].sprite.currentAnimation !== GameHandler.activePlayers[index].color + "Boost" && (FUCKINGPUNCHINGITHOLYSHITWERETOOFASTWEREGONACRASHHALP)){
         GameHandler.activePlayers[index].sprite.gotoAndPlay(GameHandler.activePlayers[index].color.toString() + "Boost");
+        SoundHandler.playBoostSound();
       } else {
         GameHandler.activePlayers[index].sprite.gotoAndPlay(GameHandler.activePlayers[index].color.toString() + "Idle");
       }
@@ -134,6 +136,7 @@ this.GameHandler = this.GameHandler || {};
       const remaningWarriors = GameHandler.activePlayers.filter((f) => {return f.health >= 0});
       if(remaningWarriors.length === 1){
         GameHandler.deathAnimation.started = true;
+        SoundHandler.playExplodeSound();
         GameHandler.deathAnimation.victor = remaningWarriors[0].color.toString().toUpperCase() + "WIN";
       }
     }
@@ -162,6 +165,7 @@ this.GameHandler = this.GameHandler || {};
         ent.collideVector = {x: 0, y: 0};
         ent.health -= Math.abs(ent.vel);
         hitWall = true;
+        SoundHandler.playBumpSound();
       }
       if(!hitWall && !ent.collided){
         arr.filter((f) => {return f !== ent}).forEach((otherEnt) => {
@@ -183,6 +187,7 @@ this.GameHandler = this.GameHandler || {};
               otherEnt.collideVector.y = otherEnt.sprite.y - (collisionOffset.y);
               otherEnt.collided = true;
               otherEnt.sprite.alpha = 0.5;
+              SoundHandler.playBumpSound();
             } else if(Math.abs(ent.vel) === Math.abs(otherEnt.vel)){
               const delta = ent.vel;
               const damageMod = (ent.holyShitWeHitTheBoosterOnThisOneBois) ? 1.5 : 1;
