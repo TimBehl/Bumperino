@@ -161,7 +161,6 @@ this.GameHandler = this.GameHandler || {};
               ent.sprite.y = localOffset.y;
               otherEnt.collideVector.x = otherEnt.sprite.x - (collisionOffset.x);
               otherEnt.collideVector.y = otherEnt.sprite.y - (collisionOffset.y);
-              console.log(otherEnt.collideVector);
               otherEnt.collided = true;
               otherEnt.sprite.alpha = 0.5;
             } else if(Math.abs(ent.vel) === Math.abs(otherEnt.vel)){
@@ -216,8 +215,6 @@ this.GameHandler = this.GameHandler || {};
       player2.sprite.rotation = 180;
       GameHandler.activePlayers.push(player2);
     }
-
-    console.log(GameHandler.activePlayers);
   }
 
 

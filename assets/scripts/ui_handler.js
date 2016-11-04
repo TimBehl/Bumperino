@@ -9,6 +9,7 @@ this.UiHandler = this.UiHandler || {};
       stage.removeChild(bar.obj);
       stage.removeChild(bar.text);
     });
+    stage.update();
     UiHandler.guiStatBars = [];
   }
 
@@ -16,7 +17,6 @@ this.UiHandler = this.UiHandler || {};
 
   let initBar = (x,y,hex,getCurrentCallback,max,title, heightMod) => {
     let mod = heightMod || 1;
-    console.log(x);
     let s = new createjs.Shape(new createjs.Graphics().beginFill(hex).rect(0 ,0,100,(30 * mod)));
     s.x = x + 10;
     s.y = y - 15;
@@ -28,12 +28,11 @@ this.UiHandler = this.UiHandler || {};
     t.x = x + 12;
     t.y = y - 8;
     let text = t.clone();
-    console.log(bar);
     stage.addChild(bar);
     stage.addChild(text);
     UiHandler.guiStatBars.push({
       obj:bar,
-      text:t,
+      text:text,
       current:getCurrentCallback,
       max:max,
       x:modCords.x,
@@ -47,12 +46,6 @@ this.UiHandler = this.UiHandler || {};
     UiHandler.guiStatBars.forEach(function(bar, i){
       const percentage = (bar.current() / bar.max);
       bar.obj.scaleX = percentage;
-      //bar.obj.x = bar.x - ((percentage * 10));
-      // if(i == 2){
-      //   console.log("=======================\n" + bar.x);
-      //   console.log(percentage);
-      //   console.log(bar.obj.x);
-      // }
     });
 }
 
