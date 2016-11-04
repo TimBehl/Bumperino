@@ -20,8 +20,7 @@ this.Switch = this.Switch || {};
           case "GAME":
               if(!GameHandler.init){
                 SoundHandler.playGameMusic();
-                GameHandler.initGame(Switch.vsPlayer);
-              }
+                  GameHandler.initGame(Switch.vsPlayer);              }
               GameHandler.gameLoop();
               break;
           case "GAME_MAPONE":

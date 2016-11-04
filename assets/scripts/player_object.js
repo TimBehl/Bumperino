@@ -31,6 +31,7 @@ Player.prototype.movePlayer = function() {
     if(this.sprite.currentAnimation != "exploded"){
       this.sprite.gotoAndPlay("exploded");
       this.sprite.alpha = 1;
+      this.health = 0;
     }
     return null;
   }
@@ -43,12 +44,6 @@ Player.prototype.movePlayer = function() {
     this.vel = -30;
   }
   //Collision vectors
-  // if(this.collideVector.x != 0){
-  //   this.collideVector.x -= (this.collideVector.x / this.collideVector.x) * 5;
-  // } else if(this.collideVector.y != 0) {
-  //   this.collideVector.y -= (this.collideVector.y / this.collideVector.y) * 5;
-  // }
-  //Using the in property to loop through the properties of collideVector. Ive been told this is the one of the important uses
   for (let pt in this.collideVector){
     if(this.collideVector[pt] != 0){
       this.collideVector[pt] = (this.collideVector[pt] > 0) ? (this.collideVector[pt] - 2) : (this.collideVector[pt] + 2);
