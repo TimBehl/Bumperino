@@ -31,6 +31,7 @@ Player.prototype.movePlayer = function() {
     if(this.sprite.currentAnimation != "exploded"){
       this.sprite.gotoAndPlay("exploded");
       this.sprite.alpha = 1;
+      this.health = 0;
     }
     return null;
   }

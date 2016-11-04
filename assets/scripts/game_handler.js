@@ -34,7 +34,7 @@ this.GameHandler = this.GameHandler || {};
     if(GameHandler.activePlayers[index]){
       let mod = forward ? 1 : -1;
       let dir = getDirection(GameHandler.activePlayers[index].vel);
-      let breaks = (dir != mod) ? 4 : 1;
+      let breaks = (dir != mod) ? 2.5 : 1;
       GameHandler.activePlayers[index].acceleratePlayer((mod + stopping) * breaks);
     }
   }
@@ -73,9 +73,9 @@ this.GameHandler = this.GameHandler || {};
     GameHandler.activePlayers.forEach((car) => {
       car.movePlayer();
     });
+    UiHandler.updateGui();
     bumbieTheStumpies();
     hasGloryBeenShedOnTheBattleField();
-    UiHandler.updateGui();
     GameTimer.runGameTimer();
     if(GameTimer.timer % 10 == 0){
       PowerUpHandler.addRandomBoost();
@@ -133,8 +133,8 @@ this.GameHandler = this.GameHandler || {};
         const local = ent.sprite.localToGlobal((ent.vel * -1),0);
         const dir = (ent.vel > 0) ? -1 : 1;
         ent.vel = (ent.vel * -0.3) + (dir * 2);
-        ent.sprite.x = local.x - ent.collideVector.x;
-        ent.sprite.y = local.y - ent.collideVector.y;
+        ent.sprite.x = (local.x - (ent.collideVector.x / 4));
+        ent.sprite.y = (local.y - (ent.collideVector.y / 4));
         ent.collideVector = {x: 0, y: 0};
         ent.health -= Math.abs(ent.vel);
         hitWall = true;
