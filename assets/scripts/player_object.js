@@ -27,6 +27,13 @@ function Player(color) {
 }
 
 Player.prototype.movePlayer = function() {
+  if(this.health <= 0){
+    if(this.sprite.currentAnimation != "exploded"){
+      this.sprite.gotoAndPlay("exploded");
+      this.sprite.alpha = 1;
+    }
+    return null;
+  }
   //Accelerating player
   const timDoesntLikeMeHavingFun = (this.holyShitWeHitTheBoosterOnThisOneBois) ? 5 : 1;
   this.vel += 0.4 * this.movement.forward * timDoesntLikeMeHavingFun;
